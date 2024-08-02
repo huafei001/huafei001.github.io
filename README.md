@@ -70,8 +70,8 @@
 
 
 ## 9.平台提单教程
-![=video](https://github.com/user-attachments/assets/1d349af9-d7bb-4f49-85b1-cdd08c9f9b8d
-)
+![=video]([https://github.com/user-attachments/assets/1d349af9-d7bb-4f49-85b1-cdd08c9f9b8d](https://github.com/huafei001/huafei001.github.io/blob/main/11118.mp4)
+
 
 > 面额最低三百，如需充值600、700等，在实充金额处填写即可，以百为整，400面额不冲确认后支付完成，订单会在订单页面显示订单待确认，到账后显示订单已完成
 提单后，进行中的订单显示订单待确认，充值完成后会显示订单已完成，无延迟
