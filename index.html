@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科技产品销售页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            /* 背景图样式：全屏覆盖、固定不滚动、模糊降噪 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 15px;
+            min-height: 100vh;
+            /* 半透明遮罩提升文字可读性 */
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .project-intro {
+            margin-bottom: 25px;
+        }
+        .project-intro h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .project-intro p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        /* 产品项样式 - 一行一个 */
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 0;
+        }
+        /* 产品分界线 */
+        .product-divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 0;
+        }
+        .product-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-name {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .product-discount {
+            font-size: 14px;
+            color: #ff4444;
+            margin-bottom: 3px;
+        }
+        .product-rate {
+            font-size: 12px;
+            color: #999;
+        }
+        /* 下单按钮样式 */
+        .order-btn {
+            padding: 8px 15px;
+            background-color: #ff6700;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .order-btn:hover {
+            background-color: #ff7a21;
+        }
+        /* 响应式适配 */
+        @media (max-width: 480px) {
+            .product-img {
+                width: 70px;
+                height: 70px;
+            }
+            .project-intro h2 {
+                font-size: 18px;
+            }
+            .order-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 项目介绍区域 -->
+        <div class="project-intro">
+            <h2>智能科技产品系列</h2>
+            <p>本系列产品聚焦智能生活场景，涵盖穿戴设备、智能家居控制终端等多款单品，兼具颜值与实用功能。产品采用轻量化设计，适配多种使用场景，为用户打造高效便捷的智能体验。</p>
+        </div>
+
+        <!-- 产品列表 -->
+        <div class="product-list">
+            <!-- 产品1 -->
+            <div class="product-item">
+                <div class="product-img"><img src="product1.jpg" alt="智能手环"></div>
+                <div class="product-info">
+                    <div class="product-name">智能健康手环</div>
+                    <div class="product-discount">限时折扣：立减30元</div>
+                    <div class="product-rate">汇率参考：1:0.12（人民币/美元）</div>
+                </div>
+                <a href="order1.html"><button class="order-btn">立即下单</button></a>
+            </div>
+            <div class="product-divider"></div>
+
+            <!-- 产品2 -->
+            <div class="product-item">
+                <div class="product-img"><img src="product2.jpg" alt="智能音箱"></div>
+                <div class="product-info">
+                    <div class="product-name">语音控制智能音箱</div>
+                    <div class="product-discount">限时折扣：8折特惠</div>
+                    <div class="product-rate">汇率参考：1:0.12（人民币/美元）</div>
+                </div>
+                <a href="order2.html"><button class="order-btn">立即下单</button></a>
+            </div>
+            <div class="product-divider"></div>
+
+            <!-- 产品3 -->
+            <div class="product-item">
+                <div class="product-img"><img src="product3.jpg" alt="智能台灯"></div>
+                <div class="product-info">
+                    <div class="product-name">护眼智能台灯</div>
+                    <div class="product-discount">限时折扣：满199减50</div>
+                    <div class="product-rate">汇率参考：1:0.12（人民币/美元）</div>
+                </div>
+                <a href="order3.html"><button class="order-btn">立即下单</button></a>
+            </div>
+            <div class="product-divider"></div>
+
+            <!-- 产品4 -->
+            <div class="product-item">
+                <div class="product-img"><img src="product4.jpg" alt="智能门锁"></div>
+                <div class="product-info">
+                    <div class="product-name">指纹解锁智能门锁</div>
+                    <div class="product-discount">限时折扣：直降100元</div>
+                    <div class="product-rate">汇率参考：1:0.12（人民币/美元）</div>
+                </div>
+                <a href="order4.html"><button class="order-btn">立即下单</button></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 背景图数组 - 可根据需要添加更多图片
+        const bgImages = [
+            "bg1.jpg",
+            "bg2.jpg",
+            "bg3.jpg",
+            "bg4.jpg",
+            "bg5.jpg",
+            "bg6.jpg",
+            "bg7.jpg"
+        ];
+        // 获取当天日期（一年中的第几天），计算索引实现每日切换
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const dayOfYear = Math.floor(diff / oneDay);
+        // 计算要显示的背景图索引
+        const bgIndex = dayOfYear % bgImages.length;
+        // 设置背景图
+        document.body.style.backgroundImage = `url(${bgImages[bgIndex]})`;
+    </script>
+</body>
+</html>
