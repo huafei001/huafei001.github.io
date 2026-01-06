@@ -68,54 +68,130 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <div class="container mx-auto px-4 py-6 max-w-4xl">
-        <!-- 顶部公告板块 -->
-        <div class="mb-8">
-            <div class="bg-white rounded-2xl p-5 notice-shadow">
-                <div class="flex items-center mb-4">
-                    <i class="fa fa-bullhorn text-notice text-xl mr-2"></i>
-                    <h2 class="text-lg font-bold text-gray-800">最新公告</h2>
-                </div>
-                <div class="space-y-3">
-                    <!-- 公告1 -->
-                    <div class="notice-item pl-4 py-2">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-semibold text-gray-800 text-sm">充值时效说明</h3>
-                            <span class="text-xs text-gray-500">最新</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mt-1">所有充值均为慢充，72小时内到账，请勿催促。</p>
-                    </div>
-                    <!-- 公告2 -->
-                    <div class="notice-item pl-4 py-2">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-semibold text-gray-800 text-sm">退款政策</h3>
-                            <span class="text-xs text-gray-500">最新</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mt-1">支持未到账订单0手续费全额退款，到账后不支持退款。</p>
-                    </div>
-                    <!-- 公告3 -->
-                    <div class="notice-item pl-4 py-2">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-semibold text-gray-800 text-sm">联系信息</h3>
-                            <span class="text-xs text-gray-500">最新</span>
-                        </div>
-                        <p class="text-gray-600 text-xs mt-1">客服@huafeiXL_Bot 交流群 @huafeiXL1</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- 产品介绍 -->
-        <div class="mb-8">
-            <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gray-800 mb-3">生活缴费优惠</h1>
-            <p class="text-gray-600 leading-relaxed">
-                全场充值享8折优惠，1000元面值仅需800元！所有充值为慢充模式，72小时内到账，支持0手续费退款，不提供发票。
-            </p>
-            <div class="flex flex-wrap gap-2 mt-4">
-                <span class="tag"><i class="fa fa-clock-o mr-1"></i>72小时到账</span>
-                <span class="tag"><i class="fa fa-refresh mr-1"></i>0手续费退款</span>
-                <span class="tag"><i class="fa fa-percent mr-1"></i>8折特惠</span>
+
+
+
+<!-- 带进群按钮的弹幕板块 -->
+<div class="relative bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 shadow-md border border-blue-100 mb-6 overflow-hidden transition-all duration-300 hover:shadow-lg">
+  <!-- 装饰元素 -->
+  <div class="absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-full opacity-50 -mr-12 -mt-12"></div>
+  <div class="absolute bottom-0 left-0 w-16 h-16 bg-indigo-100 rounded-full opacity-50 -ml-8 -mb-8"></div>
+  
+  <!-- 通知公告标题 -->
+  <div class="flex items-center mb-3 pb-2 border-b border-blue-100 relative z-10">
+    <div class="w-6 h-6 rounded-full bg-notice flex items-center justify-center mr-2">
+      <i class="fa fa-bullhorn text-white text-xs"></i>
+    </div>
+    <h3 class="font-semibold text-gray-800">通知公告</h3>
+    <span class="ml-2 text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">实时更新</span>
+  </div>
+  
+  <!-- 第一行：客服与社群信息 -->
+  <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
+    <div class="marquee-content row-1 flex items-center h-full">
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@svip996699</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-comments text-purple-500 mr-1"></i> 不禁言交流群@huafeiXL1</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
+    </div>
+  </div>
+  
+  <!-- 第二行：安全与合作提示 -->
+  <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
+    <div class="marquee-content row-2 flex items-center h-full">
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-shield text-green-500 mr-1"></i> 注意防骗</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-handshake-o text-blue-500 mr-1"></i> 诚信交易</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-line-chart text-indigo-500 mr-1"></i> 合作共赢</span>
+      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
+    </div>
+  </div>
+  
+  <!-- 第三行：服务与支持信息 -->
+  <div class="marquee-row h-9 overflow-hidden relative z-10">
+    <div class="marquee-content row-3 flex items-center h-full">
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-bolt text-yellow-600 mr-1"></i> 电费速度一般</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-clock-o text-gray-500 mr-1"></i> 72小时到账</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exchange text-blue-500 mr-1"></i> 支持主流交易所</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-percent text-green-500 mr-1"></i> 0手续费交易</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-refresh text-purple-500 mr-1"></i> 随时退款</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-download text-blue-500 mr-1"></i> 常用软件下载地址在最下面</span>
+      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
+    </div>
+  </div>
+
+  <!-- 进群按钮（弹幕下方） -->
+  <div class="mt-4 pt-3 border-t border-blue-100 flex justify-center relative z-10">
+    <a href="https://t.me/huafeiXL1" target="_blank" class="group flex items-center px-6 py-2.5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+      <i class="fa fa-comments-o mr-2 text-lg group-hover:scale-110 transition-transform"></i>
+      <span class="font-medium">加入不禁言交流群</span>
+      <i class="fa fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+    </a>
+  </div>
+</div>
+
+<!-- 美化带框的产品介绍 -->
+<div class="mb-8 bg-white rounded-2xl p-6 shadow-md border border-gray-100 overflow-hidden relative transition-all duration-300 hover:shadow-lg">
+    <!-- 装饰元素（与弹幕框装饰风格呼应） -->
+    <div class="absolute -top-6 -right-6 w-20 h-20 bg-primary/5 rounded-full"></div>
+    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/5 rounded-full opacity-70"></div>
+    
+    <div class="relative z-10">
+        <!-- 标题栏 -->
+        <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                <i class="fa fa-money text-primary text-xl"></i>
+            </div>
+            <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gray-800">生活缴费优惠</h1>
+        </div>
+        <!-- 说明文本 -->
+        <p class="text-gray-600 leading-relaxed mb-6 pl-1">
+            全场充值享8折优惠，1000元面值仅需800元！所有充值为慢充模式，72小时内到账，支持0手续费退款，不提供发票。
+        </p>
+        
+        <!-- 标签组 -->
+        <div class="flex flex-wrap gap-3 pl-1">
+            <div class="flex items-center px-4 py-2.5 bg-blue-50 rounded-xl transition-transform hover:scale-105">
+                <i class="fa fa-clock-o text-primary mr-2"></i>
+                <span class="text-gray-700">72小时到账</span>
+            </div>
+            <div class="flex items-center px-4 py-2.5 bg-green-50 rounded-xl transition-transform hover:scale-105">
+                <i class="fa fa-refresh text-green-600 mr-2"></i>
+                <span class="text-gray-700">0手续费退款</span>
+            </div>
+            <div class="flex items-center px-4 py-2.5 bg-orange-50 rounded-xl transition-transform hover:scale-105">
+                <i class="fa fa-percent text-orange-600 mr-2"></i>
+                <span class="text-gray-700">8折特惠</span>
             </div>
         </div>
+    </div>
+</div>
+
+<style type="text/tailwindcss">
+  @layer utilities {
+    .marquee-row {
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .marquee-content {
+      transform: translateX(100%);
+      display: inline-block;
+    }
+    .row-1 { animation: marquee-right 30s linear infinite; }
+    .row-2 { animation: marquee-right 35s linear infinite; }
+    .row-3 { animation: marquee-right 25s linear infinite; }
+    @keyframes marquee-right {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  }
+</style>
+        
+
+    
 
         <!-- 分界线 -->
         <div class="divider my-6"></div>
