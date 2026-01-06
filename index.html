@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品展示</title>
+    <title>彦祖之家（欢迎各位彦祖）</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -21,6 +21,8 @@
                         airport1: '#7C3AED',
                         airport2: '#F59E0B',
                         airport3: '#10B981',
+                        techCyan: '#22d3ee',
+                        techPurple: '#a855f7',
                     },
                     fontFamily: {
                         sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif'],
@@ -63,419 +65,661 @@
             .tag {
                 @apply inline-block px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800;
             }
+            /* 弹幕悬浮暂停 */
+            .marquee-row:hover .marquee-content {
+                animation-play-state: paused;
+            }
+            /* 产品图片固定比例 */
+            .product-img-container {
+                aspect-ratio: 4/3;
+            }
+            /* 科技感渐变文字 */
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-techCyan to-techPurple;
+            }
+            /* 导航栏菜单按钮 */
+            .menu-btn {
+                @apply relative w-6 h-6 cursor-pointer;
+            }
+            .menu-btn span {
+                @apply absolute left-0 w-full h-0.5 bg-white transition-all duration-300;
+            }
+            .menu-btn span:nth-child(1) {
+                top: 0;
+            }
+            .menu-btn span:nth-child(2) {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .menu-btn span:nth-child(3) {
+                bottom: 0;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
     <div class="container mx-auto px-4 py-6 max-w-4xl">
 
-
-
-
-<!-- 带进群按钮的弹幕板块 -->
-<div class="relative bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 shadow-md border border-blue-100 mb-6 overflow-hidden transition-all duration-300 hover:shadow-lg">
-  <!-- 装饰元素 -->
-  <div class="absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-full opacity-50 -mr-12 -mt-12"></div>
-  <div class="absolute bottom-0 left-0 w-16 h-16 bg-indigo-100 rounded-full opacity-50 -ml-8 -mb-8"></div>
-  
-  <!-- 通知公告标题 -->
-  <div class="flex items-center mb-3 pb-2 border-b border-blue-100 relative z-10">
-    <div class="w-6 h-6 rounded-full bg-notice flex items-center justify-center mr-2">
-      <i class="fa fa-bullhorn text-white text-xs"></i>
-    </div>
-    <h3 class="font-semibold text-gray-800">通知公告</h3>
-    <span class="ml-2 text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">实时更新</span>
-  </div>
-  
-  <!-- 第一行：客服与社群信息 -->
-  <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
-    <div class="marquee-content row-1 flex items-center h-full">
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@svip996699</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-comments text-purple-500 mr-1"></i> 不禁言交流群@huafeiXL1</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
-    </div>
-  </div>
-  
-  <!-- 第二行：安全与合作提示 -->
-  <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
-    <div class="marquee-content row-2 flex items-center h-full">
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-shield text-green-500 mr-1"></i> 注意防骗</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-handshake-o text-blue-500 mr-1"></i> 诚信交易</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-line-chart text-indigo-500 mr-1"></i> 合作共赢</span>
-      <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
-    </div>
-  </div>
-  
-  <!-- 第三行：服务与支持信息 -->
-  <div class="marquee-row h-9 overflow-hidden relative z-10">
-    <div class="marquee-content row-3 flex items-center h-full">
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-bolt text-yellow-600 mr-1"></i> 电费速度一般</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-clock-o text-gray-500 mr-1"></i> 72小时到账</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exchange text-blue-500 mr-1"></i> 支持主流交易所</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-percent text-green-500 mr-1"></i> 0手续费交易</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-refresh text-purple-500 mr-1"></i> 随时退款</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-download text-blue-500 mr-1"></i> 常用软件下载地址在最下面</span>
-      <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
-    </div>
-  </div>
-
-  <!-- 进群按钮（弹幕下方） -->
-  <div class="mt-4 pt-3 border-t border-blue-100 flex justify-center relative z-10">
-    <a href="https://t.me/huafeiXL1" target="_blank" class="group flex items-center px-6 py-2.5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-      <i class="fa fa-comments-o mr-2 text-lg group-hover:scale-110 transition-transform"></i>
-      <span class="font-medium">加入不禁言交流群</span>
-      <i class="fa fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-    </a>
-  </div>
-</div>
-
-<!-- 美化带框的产品介绍 -->
-<div class="mb-8 bg-white rounded-2xl p-6 shadow-md border border-gray-100 overflow-hidden relative transition-all duration-300 hover:shadow-lg">
-    <!-- 装饰元素（与弹幕框装饰风格呼应） -->
-    <div class="absolute -top-6 -right-6 w-20 h-20 bg-primary/5 rounded-full"></div>
-    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/5 rounded-full opacity-70"></div>
-    
-    <div class="relative z-10">
-        <!-- 标题栏 -->
-        <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                <i class="fa fa-money text-primary text-xl"></i>
-            </div>
-            <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gray-800">生活缴费优惠</h1>
-        </div>
-        <!-- 说明文本 -->
-        <p class="text-gray-600 leading-relaxed mb-6 pl-1">
-            全场充值享8折优惠，1000元面值仅需800元！所有充值为慢充模式，72小时内到账，支持0手续费退款，不提供发票。
-        </p>
-        
-        <!-- 标签组 -->
-        <div class="flex flex-wrap gap-3 pl-1">
-            <div class="flex items-center px-4 py-2.5 bg-blue-50 rounded-xl transition-transform hover:scale-105">
-                <i class="fa fa-clock-o text-primary mr-2"></i>
-                <span class="text-gray-700">72小时到账</span>
-            </div>
-            <div class="flex items-center px-4 py-2.5 bg-green-50 rounded-xl transition-transform hover:scale-105">
-                <i class="fa fa-refresh text-green-600 mr-2"></i>
-                <span class="text-gray-700">0手续费退款</span>
-            </div>
-            <div class="flex items-center px-4 py-2.5 bg-orange-50 rounded-xl transition-transform hover:scale-105">
-                <i class="fa fa-percent text-orange-600 mr-2"></i>
-                <span class="text-gray-700">8折特惠</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style type="text/tailwindcss">
-  @layer utilities {
-    .marquee-row {
-      white-space: nowrap;
-      position: relative;
-      overflow: hidden;
-    }
-    .marquee-content {
-      transform: translateX(100%);
-      display: inline-block;
-    }
-    .row-1 { animation: marquee-right 30s linear infinite; }
-    .row-2 { animation: marquee-right 35s linear infinite; }
-    .row-3 { animation: marquee-right 25s linear infinite; }
-    @keyframes marquee-right {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-  }
-</style>
-        
-
-    
-
-        <!-- 分界线 -->
-        <div class="divider my-6"></div>
-
-        <!-- 产品列表 -->
-        <div class="space-y-6 mb-10">
-            <!-- 产品1：电费 -->
-            <div class="bg-white rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row">
-                <div class="w-full sm:w-1/3 h-40 sm:h-auto relative">
-                    <img src="https://youke3.picui.cn/s1/2026/01/05/695bcb86ee4f0.jpeg" alt="电费缴费" class="absolute inset-0 w-full h-full object-cover">
+        <!-- 修复后的科技感导航栏 -->
+        <nav class="bg-gradient-to-r from-slate-900 to-blue-900 rounded-2xl mb-6 p-4 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-techCyan to-techPurple"></div>
+            <div class="flex justify-between items-center relative z-10">
+                <div class="flex items-center gap-2">
+                    <i class="fa fa-bolt text-techCyan text-xl"></i>
+                    <span class="text-white font-bold text-lg">彦祖之家（欢迎各位彦祖）</span>
                 </div>
-                <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">电费慢充</h3>
-                        <p class="text-gray-500 text-sm mb-3">全国电网通用，1000元电费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">国网支持</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">南网支持</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">居民用电</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div>
-                            <span class="text-gray-400 line-through text-sm">¥1000</span>
-                            <span class="text-secondary text-xl font-bold ml-2">¥800</span>
-                            <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
-                        </div>
-                        <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                            <i class="fa fa-shopping-cart mr-1"></i> 立即下单
-                        </a>
-                    </div>
+                <!-- 桌面端导航菜单 -->
+                <div class="hidden md:flex gap-6">
+                    <a href="#products" class="text-gray-300 hover:text-techCyan transition-colors">优惠缴费</a>
+                    <a href="#tools" class="text-gray-300 hover:text-techCyan transition-colors">工具下载</a>
+                    <a href="#airport" class="text-gray-300 hover:text-techCyan transition-colors">网络服务</a>
+                    <a href="#contact" class="text-gray-300 hover:text-techCyan transition-colors">联系客服</a>
+                </div>
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden menu-btn" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
+            <!-- 科技感背景装饰 -->
+            <div class="absolute top-1/2 right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-20 w-60 h-60 bg-techCyan/10 rounded-full blur-3xl"></div>
+        </nav>
 
-            <!-- 产品2：水费 -->
-            <div class="bg-white rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row">
-                <div class="w-full sm:w-1/3 h-40 sm:h-auto relative">
-                    <img src="https://youke3.picui.cn/s1/2026/01/05/695bc8d89ee03.jpeg" alt="水费缴费" class="absolute inset-0 w-full h-full object-cover">
-                </div>
-                <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">水费慢充</h3>
-                        <p class="text-gray-500 text-sm mb-3">全国主流自来水公司通用，1000元水费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">含污水处理费</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">阶梯水价支持</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div>
-                            <span class="text-gray-400 line-through text-sm">¥1000</span>
-                            <span class="text-secondary text-xl font-bold ml-2">¥800</span>
-                            <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
-                        </div>
-                        <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                            <i class="fa fa-shopping-cart mr-1"></i> 立即下单
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 产品3：燃气 -->
-            <div class="bg-white rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row">
-                <div class="w-full sm:w-1/3 h-40 sm:h-auto relative">
-                    <img src="https://youke3.picui.cn/s1/2026/01/05/695bc8066a815.jpeg" alt="燃气缴费" class="absolute inset-0 w-full h-full object-cover">
-                </div>
-                <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">燃气费慢充</h3>
-                        <p class="text-gray-500 text-sm mb-3">覆盖全国天然气/液化气用户，1000元燃气费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">天然气支持</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">液化气支持</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div>
-                            <span class="text-gray-400 line-through text-sm">¥1000</span>
-                            <span class="text-secondary text-xl font-bold ml-2">¥800</span>
-                            <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
-                        </div>
-                        <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                            <i class="fa fa-shopping-cart mr-1"></i> 立即下单
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 产品4：话费 -->
-            <div class="bg-white rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row">
-                <div class="w-full sm:w-1/3 h-40 sm:h-auto relative">
-                    <img src="https://youke3.picui.cn/s1/2026/01/05/695bc7b663a00.jpeg" alt="话费充值" class="absolute inset-0 w-full h-full object-cover">
-                </div>
-                <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">手机话费慢充</h3>
-                        <p class="text-gray-500 text-sm mb-3">三网通用（移动/联通/电信），1000元话费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">移动支持</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">联通支持</span>
-                            <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">电信支持</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div>
-                            <span class="text-gray-400 line-through text-sm">¥1000</span>
-                            <span class="text-secondary text-xl font-bold ml-2">¥800</span>
-                            <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
-                        </div>
-                        <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                            <i class="fa fa-shopping-cart mr-1"></i> 立即下单
-                        </a>
-                    </div>
-                </div>
+        <!-- 移动端下拉菜单 (默认隐藏) -->
+        <div id="mobileMenu" class="hidden bg-white rounded-xl shadow-lg p-4 mb-6 border border-gray-100">
+            <div class="flex flex-col space-y-3">
+                <a href="#products" class="px-4 py-2 text-gray-800 hover:bg-gray-50 rounded-lg transition-colors">优惠缴费</a>
+                <a href="#tools" class="px-4 py-2 text-gray-800 hover:bg-gray-50 rounded-lg transition-colors">工具下载</a>
+                <a href="#airport" class="px-4 py-2 text-gray-800 hover:bg-gray-50 rounded-lg transition-colors">网络服务</a>
+                <a href="#contact" class="px-4 py-2 text-gray-800 hover:bg-gray-50 rounded-lg transition-colors">联系客服</a>
             </div>
         </div>
 
-       
+        <!-- 带进群按钮的弹幕板块 -->
+        <div class="relative bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 shadow-md border border-blue-100 mb-6 overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <!-- 装饰元素 -->
+            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-full opacity-50 -mr-12 -mt-12"></div>
+            <div class="absolute bottom-0 left-0 w-16 h-16 bg-indigo-100 rounded-full opacity-50 -ml-8 -mb-8"></div>
+            
+            <!-- 通知公告标题 -->
+            <div class="flex items-center mb-3 pb-2 border-b border-blue-100 relative z-10">
+                <div class="w-6 h-6 rounded-full bg-notice flex items-center justify-center mr-2">
+                    <i class="fa fa-bullhorn text-white text-xs"></i>
+                </div>
+                <h3 class="font-semibold text-gray-800">通知公告</h3>
+                <span class="ml-2 text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">实时更新</span>
+            </div>
+            
+            <!-- 第一行：客服与社群信息 -->
+            <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
+                <div class="marquee-content row-1 flex items-center h-full">
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@svip996699</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-comments text-purple-500 mr-1"></i> 不禁言交流群@huafeiXL1</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
+                </div>
+            </div>
+            
+            <!-- 第二行：安全与合作提示 -->
+            <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
+                <div class="marquee-content row-2 flex items-center h-full">
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-shield text-green-500 mr-1"></i> 注意防骗</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-handshake-o text-blue-500 mr-1"></i> 诚信交易</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-line-chart text-indigo-500 mr-1"></i> 合作共赢</span>
+                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
+                </div>
+            </div>
+            
+            <!-- 第三行：服务与支持信息 -->
+            <div class="marquee-row h-9 overflow-hidden relative z-10">
+                <div class="marquee-content row-3 flex items-center h-full">
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-bolt text-yellow-600 mr-1"></i> 电费速度一般</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-clock-o text-gray-500 mr-1"></i> 72小时到账</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exchange text-blue-500 mr-1"></i> 支持主流交易所</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-percent text-green-500 mr-1"></i> 0手续费交易</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-refresh text-purple-500 mr-1"></i> 随时退款</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-download text-blue-500 mr-1"></i> 常用软件下载地址在最下面</span>
+                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
+                </div>
+            </div>
+
+            <!-- 进群按钮（弹幕下方） -->
+            <div class="mt-4 pt-3 border-t border-blue-100 flex justify-center relative z-10">
+                <a href="https://t.me/huafeiXL1" target="_blank" class="group flex items-center px-6 py-2.5 bg-gradient-to-r from-techPurple to-techCyan text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                    <i class="fa fa-comments-o mr-2 text-lg group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">加入不禁言交流群</span>
+                    <i class="fa fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 美化带框的产品介绍 -->
+        <div class="mb-8 bg-white rounded-2xl p-6 shadow-md border border-gray-100 overflow-hidden relative transition-all duration-300 hover:shadow-lg">
+            <!-- 装饰元素（与弹幕框装饰风格呼应） -->
+            <div class="absolute -top-6 -right-6 w-20 h-20 bg-primary/5 rounded-full"></div>
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/5 rounded-full opacity-70"></div>
+            
+            <div class="relative z-10">
+                <!-- 标题栏 -->
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <i class="fa fa-money text-primary text-xl"></i>
+                    </div>
+                    <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gray-800">生活缴费优惠</h1>
+                </div>
+                <!-- 说明文本 -->
+                <p class="text-gray-600 leading-relaxed mb-6 pl-1">
+                    全场充值享8折优惠，1000元面值仅需800元！所有充值为慢充模式，72小时内到账，支持0手续费退款，不提供发票。
+                </p>
                 
-        <!-- 软件下载区 -->
-        <div class="mt-12 mb-10">
-            <div class="flex items-center mb-6">
-                <div class="divider flex-1 mr-4"></div>
-                <h2 class="text-xl font-bold text-gray-800 flex items-center">
-                    <i class="fa fa-download mr-2"></i> 软件下载
-                </h2>
-                <div class="divider flex-1 ml-4"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <!-- 欧易平台 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-okx">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-okx/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-line-chart text-okx text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">欧易</h3>
+                <!-- 科技感数据卡片 -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <i class="fa fa-clock-o text-primary text-xl mb-2"></i>
+                        <span class="text-gray-500 text-xs">到账时效</span>
+                        <span class="text-gray-800 font-bold">≤72h</span>
                     </div>
-                    
-                    <div class="space-y-3 mb-4 text-sm">
-                        <div>
-                            <p class="text-gray-600 mb-1">官方注册链接</p >
-                            <a href=" " target="_blank" class="text-primary hover:underline break-all">
-                                https://www.okx.com/cn/join/39338964
-                            </a >
-                            <p class="text-gray-500 text-xs mt-1">（不要用美国香港IP）</p >
-                        </div>
-                        <div>
-                            <p class="text-gray-600 mb-1">大陆注册链接</p >
-                            <a href="https://www.firgrouxywebb.com/join/39338964" target="_blank" class="text-primary hover:underline break-all">
-                                www.firgrouxywebb.com/join/39338964
-                            </a >
-                            <p class="text-gray-500 text-xs mt-1">（关闭VPN，注册后用国外ID下载欧易苹果APP）</p >
-                        </div>
-                        <div>
-                            <p class="text-gray-600 mb-1">下载地址</p >
-                            <a href="https://download.fpnodexq.com/upgradeapp/android_37897116.apk" target="_blank" class="text-primary hover:underline break-all">
-                                https://download.fpnodexq.com/upgradeapp/android_37897116.apk
-                            </a >
-                            <p class="text-gray-500 text-xs mt-1">（复制到浏览器）</p >
-                        </div>
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <i class="fa fa-percent text-secondary text-xl mb-2"></i>
+                        <span class="text-gray-500 text-xs">折扣力度</span>
+                        <span class="text-gray-800 font-bold">8折起</span>
                     </div>
-                </div>
-
-                <!-- 火币平台 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-huobi">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-huobi/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-exchange text-huobi text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">火币</h3>
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <i class="fa fa-shield text-green-500 text-xl mb-2"></i>
+                        <span class="text-gray-500 text-xs">保障服务</span>
+                        <span class="text-gray-800 font-bold">全额退款</span>
                     </div>
-                    
-                    <div class="space-y-3 mb-4 text-sm">
-                        <div>
-                            <p class="text-gray-600 mb-1">官网注册链接</p >
-                            <a href="https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223" target="_blank" class="text-primary hover:underline break-all">
-                                https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223
-                            </a >
-                        </div>
-                        <div>
-                            <p class="text-gray-600 mb-1">大陆访问链接</p >
-                            <a href="https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223" target="_blank" class="text-primary hover:underline break-all">
-                                https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223
-                            </a >
-                            <p class="text-gray-500 text-xs mt-1">（关闭VPN，国外ID下载苹果APP）</p >
-                        </div>
-                        <div>
-                            <p class="text-gray-600 mb-1">下载地址</p >
-                            <a href="https://global-prd-client-download.oss-cn-hongkong.aliyuncs.com/app/HB5zqd9223.apk" target="_blank" class="text-primary hover:underline break-all">
-                                https://global-prd-client-download.oss-cn-hongkong.aliyuncs.com/app/HB5zqd9223.apk
-                            </a >
-                            <p class="text-gray-500 text-xs mt-1">（复制到浏览器）</p >
-                        </div>
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <i class="fa fa-users text-purple-500 text-xl mb-2"></i>
+                        <span class="text-gray-500 text-xs">用户规模</span>
+                        <span class="text-gray-800 font-bold">10W+</span>
                     </div>
-                </div>
-
-                <!-- Telegram 下载 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-telegram">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-telegram/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-paper-plane text-telegram text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">Telegram</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">即时通讯应用，安全加密聊天</p >
-                    <a href="https://telegram.org/android" target="_blank" class="block w-full text-center bg-telegram hover:bg-telegram/90 text-white py-2 rounded-lg text-sm transition-colors">
-                        <i class="fa fa-android mr-1"></i> 安卓下载
-                    </a >
-                </div>
-
-                <!-- Clash 下载 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-clash">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-clash/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-shield text-clash text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">Clash</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">网络工具，支持多平台配置</p >
-                    <a href="https://github.com/yiyuanjichang/client/releases/download/v2.5.12/cfa-2.5.12-premium-universal-release.apk" target="_blank" class="block w-full text-center bg-clash hover:bg-clash/90 text-white py-2 rounded-lg text-sm transition-colors">
-                        <i class="fa fa-android mr-1"></i> 安卓版
-                    </a >
                 </div>
             </div>
         </div>
 
-        <!-- 机场推荐区 -->
-        <div class="mt-12 mb-10">
-            <div class="flex items-center mb-6">
-                <div class="divider flex-1 mr-4"></div>
-                <h2 class="text-xl font-bold text-gray-800 flex items-center">
-                    <i class="fa fa-plane mr-2"></i> 机场推荐
-                </h2>
-                <div class="divider flex-1 ml-4"></div>
+        <style type="text/tailwindcss">
+            @layer utilities {
+                .marquee-row {
+                    white-space: nowrap;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .marquee-content {
+                    transform: translateX(100%);
+                    display: inline-block;
+                }
+                .row-1 { animation: marquee-right 30s linear infinite; }
+                .row-2 { animation: marquee-right 35s linear infinite; }
+                .row-3 { animation: marquee-right 25s linear infinite; }
+                @keyframes marquee-right {
+                    0% { transform: translateX(100%); }
+                    100% { transform: translateX(-100%); }
+                }
+            }
+        </style>
+                
+        <!-- 统一美化框包裹的产品列表  添加锚点 -->
+        <div id="products" class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
+            <!-- 产品列表装饰元素 -->
+            <div class="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-secondary/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+
+            <!-- 产品列表标题 -->
+            <div class="flex items-center mb-6 relative z-10">
+                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-2">
+                    <i class="fa fa-th-list text-primary"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">优惠缴费项目</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <!-- 一元机场 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport1">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-airport1/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-plane text-airport1 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">一元机场</h3>
+            <!-- 产品列表内容 -->
+            <div class="space-y-6 relative z-10">
+                <!-- 产品1：电费 -->
+                <div class="rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row bg-white border border-gray-100">
+                    <div class="w-full sm:w-1/3 product-img-container relative">
+                        <img src="https://youke3.picui.cn/s1/2026/01/05/695bcb86ee4f0.jpeg" alt="电费缴费" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">超高性价比，入门级首选，稳定运行保障基础网络需求</p >
-                    <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="block w-full text-center bg-airport1 hover:bg-airport1/90 text-white py-2 rounded-lg text-sm transition-colors">
-                        立即注册
-                    </a >
+                    <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">电费慢充</h3>
+                            <p class="text-gray-500 text-sm mb-3">全国电网通用，1000元电费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">国网支持</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">南网支持</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">居民用电</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">¥1000</span>
+                                <span class="text-primary text-xl font-bold ml-2">¥800</span>
+                                <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
+                            </div>
+                            <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                                <i class="fa fa-shopping-cart mr-1"></i> 立即下单
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 宝可梦机场 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport2">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-airport2/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-wifi text-airport2 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">宝可梦机场</h3>
+                <!-- 产品2：水费 -->
+                <div class="rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row bg-white border border-gray-100">
+                    <div class="w-full sm:w-1/3 product-img-container relative">
+                        <img src="https://youke3.picui.cn/s1/2026/01/05/695bc8d89ee03.jpeg" alt="水费缴费" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">每月免费60GB流量，满足日常轻度使用，新手友好</p >
-                    <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="block w-full text-center bg-airport2 hover:bg-airport2/90 text-white py-2 rounded-lg text-sm transition-colors">
-                        立即注册
-                    </a >
+                    <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">水费慢充</h3>
+                            <p class="text-gray-500 text-sm mb-3">全国主流自来水公司通用，1000元水费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">含污水处理费</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">阶梯水价支持</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">¥1000</span>
+                                <span class="text-secondary text-xl font-bold ml-2">¥800</span>
+                                <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
+                            </div>
+                            <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                                <i class="fa fa-shopping-cart mr-1"></i> 立即下单
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 24一年机场 -->
-                <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport3">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-airport3/10 flex items-center justify-center mr-3">
-                            <i class="fa fa-shield text-airport3 text-xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-gray-800">24一年机场</h3>
+                <!-- 产品3：燃气 -->
+                <div class="rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row bg-white border border-gray-100">
+                    <div class="w-full sm:w-1/3 product-img-container relative">
+                        <img src="https://youke3.picui.cn/s1/2026/01/05/695bc8066a815.jpeg" alt="燃气缴费" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                     </div>
-                    <p class="text-gray-600 text-sm mb-4">年度特惠套餐，低成本长期使用，适合稳定需求用户</p >
-                    <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="block w-full text-center bg-airport3 hover:bg-airport3/90 text-white py-2 rounded-lg text-sm transition-colors">
-                        立即注册
-                    </a >
+                    <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">燃气费慢充</h3>
+                            <p class="text-gray-500 text-sm mb-3">覆盖全国天然气/液化气用户，1000元燃气费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">天然气支持</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">液化气支持</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">¥1000</span>
+                                <span class="text-secondary text-xl font-bold ml-2">¥800</span>
+                                <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
+                            </div>
+                            <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                                <i class="fa fa-shopping-cart mr-1"></i> 立即下单
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 产品4：话费 -->
+                <div class="rounded-xl overflow-hidden product-shadow flex flex-col sm:flex-row bg-white border border-gray-100">
+                    <div class="w-full sm:w-1/3 product-img-container relative">
+                        <img src="https://youke3.picui.cn/s1/2026/01/05/695bc7b663a00.jpeg" alt="话费充值" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="w-full sm:w-2/3 p-5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">手机话费慢充</h3>
+                            <p class="text-gray-500 text-sm mb-3">三网通用（移动/联通/电信），1000元话费慢充，72小时内到账，支持未到账全额退款，不提供发票</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">移动支持</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">联通支持</span>
+                                <span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 text-gray-700">电信支持</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">¥1000</span>
+                                <span class="text-secondary text-xl font-bold ml-2">¥800</span>
+                                <span class="inline-block ml-2 text-xs bg-green-100 text-green-800 px-1.5 py-0.5 rounded">省¥200</span>
+                            </div>
+                            <a href="http://t.me/svip996699" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                                <i class="fa fa-shopping-cart mr-1"></i> 立即下单
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- 软件下载区 - 美化框包裹  添加锚点 -->
+        <div id="tools" class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
+            <!-- 装饰元素 -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-telegram/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-okx/5 rounded-full -translate-x-1/4 translate-y-1/4"></div>
+
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="divider flex-1 mr-4"></div>
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                        <i class="fa fa-download mr-2"></i> 软件下载
+                    </h2>
+                    <div class="divider flex-1 ml-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- 欧易平台 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-okx">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-okx/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-line-chart text-okx text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">欧易</h3>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4 text-sm">
+                            <div>
+                                <p class="text-gray-600 mb-1">官方注册链接</p >
+                                <a href="https://www.okx.com/cn/join/39338964" target="_blank" class="text-primary hover:underline break-all">
+                                    https://www.okx.com/cn/join/39338964
+                                </a >
+                                <p class="text-gray-500 text-xs mt-1">（不要用美国香港IP）</p >
+                            </div>
+                            <div>
+                                <p class="text-gray-600 mb-1">大陆注册链接</p >
+                                <a href="https://www.firgrouxywebb.com/join/39338964" target="_blank" class="text-primary hover:underline break-all">
+                                    www.firgrouxywebb.com/join/39338964
+                                </a >
+                                <p class="text-gray-500 text-xs mt-1">（关闭VPN，注册后用国外ID下载欧易苹果APP）</p >
+                            </div>
+                            <div>
+                                <p class="text-gray-600 mb-1">下载地址</p >
+                                <a href="https://download.fpnodexq.com/upgradeapp/android_37897116.apk" target="_blank" class="text-primary hover:underline break-all">
+                                    https://download.fpnodexq.com/upgradeapp/android_37897116.apk
+                                </a >
+                                <p class="text-gray-500 text-xs mt-1">（复制到浏览器）</p >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 火币平台 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-huobi">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-huobi/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-exchange text-huobi text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">火币</h3>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4 text-sm">
+                            <div>
+                                <p class="text-gray-600 mb-1">官网注册链接</p >
+                                <a href="https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223" target="_blank" class="text-primary hover:underline break-all">
+                                    https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223
+                                </a >
+                            </div>
+                            <div>
+                                <p class="text-gray-600 mb-1">大陆访问链接</p >
+                                <a href="https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223" target="_blank" class="text-primary hover:underline break-all">
+                                    https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223
+                                </a >
+                                <p class="text-gray-500 text-xs mt-1">（关闭VPN，国外ID下载苹果APP）</p >
+                            </div>
+                            <div>
+                                <p class="text-gray-600 mb-1">下载地址</p >
+                                <a href="https://global-prd-client-download.oss-cn-hongkong.aliyuncs.com/app/HB5zqd9223.apk" target="_blank" class="text-primary hover:underline break-all">
+                                    https://global-prd-client-download.oss-cn-hongkong.aliyuncs.com/app/HB5zqd9223.apk
+                                </a >
+                                <p class="text-gray-500 text-xs mt-1">（复制到浏览器）</p >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telegram 下载 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-telegram">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-telegram/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-paper-plane text-telegram text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">Telegram</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">即时通讯应用，安全加密聊天</p >
+                        <a href="https://telegram.org/android" target="_blank" class="block w-full text-center bg-telegram hover:bg-telegram/90 text-white py-2 rounded-lg text-sm transition-colors">
+                            <i class="fa fa-android mr-1"></i> 安卓下载
+                        </a >
+                    </div>
+
+                    <!-- Clash 下载 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-clash">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-clash/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-shield text-clash text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">Clash</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">网络工具，支持多平台配置</p >
+                        <a href="https://github.com/yiyuanjichang/client/releases/download/v2.5.12/cfa-2.5.12-premium-universal-release.apk" target="_blank" class="block w-full text-center bg-clash hover:bg-clash/90 text-white py-2 rounded-lg text-sm transition-colors">
+                            <i class="fa fa-android mr-1"></i> 安卓版
+                        </a >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 机场推荐区 - 美化框包裹  添加锚点 -->
+        <div id="airport" class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
+            <!-- 装饰元素 -->
+            <div class="absolute top-0 left-0 w-32 h-32 bg-airport1/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-airport2/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="divider flex-1 mr-4"></div>
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                        <i class="fa fa-plane mr-2"></i> 机场推荐
+                    </h2>
+                    <div class="divider flex-1 ml-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <!-- 一元机场 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport1">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-airport1/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-plane text-airport1 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">一元机场</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">超高性价比，入门级首选，稳定运行保障基础网络需求</p >
+                        <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="block w-full text-center bg-airport1 hover:bg-airport1/90 text-white py-2 rounded-lg text-sm transition-colors">
+                            立即注册
+                        </a >
+                    </div>
+
+                    <!-- 宝可梦机场 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport2">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-airport2/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-wifi text-airport2 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">宝可梦机场</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">每月免费60GB流量，满足日常轻度使用，新手友好</p >
+                        <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="block w-full text-center bg-airport2 hover:bg-airport2/90 text-white py-2 rounded-lg text-sm transition-colors">
+                            立即注册
+                        </a >
+                    </div>
+
+                    <!-- 24一年机场 -->
+                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport3">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-airport3/10 flex items-center justify-center mr-3">
+                                <i class="fa fa-shield text-airport3 text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">24一年机场</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">年度特惠套餐，低成本长期使用，适合稳定需求用户</p >
+                        <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="block w-full text-center bg-airport3 hover:bg-airport3/90 text-white py-2 rounded-lg text-sm transition-colors">
+                            立即注册
+                        </a >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新增用户信任背书板块 -->
+        <section class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl"></div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 bg-techCyan/5 rounded-full blur-2xl"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-2">
+                        <i class="fa fa-star text-primary"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800">用户信赖之选</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=1" alt="用户头像" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">张先生</h4>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm">缴费速度很快，客服响应及时，科技感十足的平台，值得推荐！</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=2" alt="用户头像" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">李女士</h4>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm">8折优惠很划算，操作流程简单，页面设计很有科技感。</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=3" alt="用户头像" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">王先生</h4>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm">多次使用，从未翻车，平台稳定可靠，科技服务体验拉满！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新增科技感 footer -->
+        <footer id="contact" class="bg-slate-900 rounded-2xl p-6 text-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-techCyan to-techPurple"></div>
+            <div class="absolute top-1/2 right-10 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div class="container mx-auto relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fa fa-bolt text-techCyan text-xl"></i>
+                            <span class="font-bold text-lg">彦祖之家（欢迎各位彦祖）</span>
+                        </div>
+                        <p class="text-gray-400 text-sm">专注于生活缴费优惠、科技工具分享、网络服务推荐的一站式平台，以科技赋能生活，让便捷触手可及。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">快速链接</h4>
+                        <ul class="text-gray-400 text-sm space-y-2">
+                            <li><a href="#products" class="hover:text-techCyan transition-colors">优惠缴费</a></li>
+                            <li><a href="#tools" class="hover:text-techCyan transition-colors">工具下载</a></li>
+                            <li><a href="#airport" class="hover:text-techCyan transition-colors">网络服务</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">联系我们</h4>
+                        <ul class="text-gray-400 text-sm space-y-2">
+                            <li><i class="fa fa-telegram mr-2"></i> TG@svip996699</li>
+                            <li><i class="fa fa-comments mr-2"></i> 交流群@huafeiXL1</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-slate-800 mt-6 pt-6 text-center text-gray-500 text-xs">
+                    © 2025 彦祖之家 版权所有 | 本平台仅供技术交流使用
+                </div>
+            </div>
+        </footer>
+
     </div>
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // 菜单按钮动画
+            const spans = menuBtn.querySelectorAll('span');
+            spans.forEach((span, index) => {
+                if (mobileMenu.classList.contains('hidden')) {
+                    span.style.transform = '';
+                    span.style.opacity = '1';
+                } else {
+                    if (index === 0) {
+                        span.style.transform = 'translateY(6px) rotate(45deg)';
+                    } else if (index === 1) {
+                        span.style.opacity = '0';
+                    } else if (index === 2) {
+                        span.style.transform = 'translateY(-6px) rotate(-45deg)';
+                    }
+                }
+            });
+        });
+
+        // 锚点跳转平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const spans = menuBtn.querySelectorAll('span');
+                        spans.forEach((span, index) => {
+                            span.style.transform = '';
+                            span.style.opacity = '1';
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-                  
-
-        
