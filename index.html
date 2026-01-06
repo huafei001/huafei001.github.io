@@ -552,66 +552,92 @@
             </div>
         </div>
 
-        <!-- 机场推荐区 - 美化框包裹  添加锚点 -->
-        <div id="airport" class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
-            <!-- 装饰元素 -->
-            <div class="absolute top-0 left-0 w-32 h-32 bg-airport1/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-24 h-24 bg-airport2/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
 
-            <div class="relative z-10">
-                <div class="flex items-center mb-6">
-                    <div class="divider flex-1 mr-4"></div>
-                    <h2 class="text-xl font-bold text-gray-800 flex items-center">
-                        <i class="fa fa-plane mr-2"></i> 机场推荐
-                    </h2>
-                    <div class="divider flex-1 ml-4"></div>
+
+<!-- 机场工具下载板块 - 独立美化版 -->
+<div id="airport-tools" class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative transition-all duration-300 hover:shadow-xl">
+    <!-- 装饰元素 -->
+    <div class="absolute top-0 left-0 w-32 h-32 bg-techPurple/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-24 h-24 bg-techCyan/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+
+    <div class="relative z-10">
+        <div class="flex items-center mb-6">
+            <div class="h-px bg-gray-200 flex-1 mr-4"></div>
+            <h2 class="text-xl font-bold text-gray-800 flex items-center">
+                <i class="fa fa-plane text-techPurple mr-2"></i> 机场工具推荐
+            </h2>
+            <div class="h-px bg-gray-200 flex-1 ml-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 一元机场 -->
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center mr-3">
+                        <i class="fa fa-rocket text-[#FF6B6B] text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-800">一元机场</h3>
                 </div>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">高性价比入门选择，稳定连接，支持多设备登录</p>
+                <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2.5 bg-[#FF6B6B] text-white rounded-lg hover:bg-[#FF6B6B]/90 transition-colors text-sm shadow-md hover:shadow-lg">
+                    <i class="fa fa-external-link mr-2"></i> 立即注册
+                </a>
+                <div class="mt-3 text-xs text-gray-500 text-center">
+                    注册码：CLONhlZF
+                </div>
+            </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <!-- 一元机场 -->
-                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport1">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-airport1/10 flex items-center justify-center mr-3">
-                                <i class="fa fa-plane text-airport1 text-xl"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-800">一元机场</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">超高性价比，入门级首选，稳定运行保障基础网络需求</p >
-                        <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="block w-full text-center bg-airport1 hover:bg-airport1/90 text-white py-2 rounded-lg text-sm transition-colors">
-                            立即注册
-                        </a >
+            <!-- 宝可梦机场 -->
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-[#4ECDC4]/10 flex items-center justify-center mr-3">
+                        <i class="fa fa-paw text-[#4ECDC4] text-lg"></i>
                     </div>
+                    <h3 class="text-base font-semibold text-gray-800">宝可梦机场</h3>
+                </div>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">每月免费60G流量，适合轻度使用用户</p>
+                <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2.5 bg-[#4ECDC4] text-white rounded-lg hover:bg-[#4ECDC4]/90 transition-colors text-sm shadow-md hover:shadow-lg">
+                    <i class="fa fa-external-link mr-2"></i> 免费注册
+                </a>
+                <div class="mt-3 text-xs text-gray-500 text-center">
+                    注册码：X07zWTLv
+                </div>
+            </div>
 
-                    <!-- 宝可梦机场 -->
-                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport2">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-airport2/10 flex items-center justify-center mr-3">
-                                <i class="fa fa-wifi text-airport2 text-xl"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-800">宝可梦机场</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">每月免费60GB流量，满足日常轻度使用，新手友好</p >
-                        <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="block w-full text-center bg-airport2 hover:bg-airport2/90 text-white py-2 rounded-lg text-sm transition-colors">
-                            立即注册
-                        </a >
+            <!-- 24一年机场 -->
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-[#FFD166]/10 flex items-center justify-center mr-3">
+                        <i class="fa fa-diamond text-[#FFD166] text-lg"></i>
                     </div>
-
-                    <!-- 24一年机场 -->
-                    <div class="bg-white rounded-xl p-6 download-card border-t-4 border-airport3">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-airport3/10 flex items-center justify-center mr-3">
-                                <i class="fa fa-shield text-airport3 text-xl"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-800">24一年机场</h3>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">年度特惠套餐，低成本长期使用，适合稳定需求用户</p >
-                        <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="block w-full text-center bg-airport3 hover:bg-airport3/90 text-white py-2 rounded-lg text-sm transition-colors">
-                            立即注册
-                        </a >
-                    </div>
+                    <h3 class="text-base font-semibold text-gray-800">24一年机场</h3>
+                </div>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">年度特惠套餐，低至24元/年，高流量不限速</p>
+                <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2.5 bg-[#FFD166] text-white rounded-lg hover:bg-[#FFD166]/90 transition-colors text-sm shadow-md hover:shadow-lg">
+                    <i class="fa fa-external-link mr-2"></i> 特惠注册
+                </a>
+                <div class="mt-3 text-xs text-gray-500 text-center">
+                    注册码：HqZaxd0y
                 </div>
             </div>
         </div>
+
+        <!-- 温馨提示 -->
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <p class="text-gray-600 text-sm flex items-start">
+                <i class="fa fa-lightbulb-o text-techPurple mt-1 mr-2"></i>
+                <span>所有机场仅提供注册入口，使用前请仔细阅读平台用户协议，仅限个人学习交流使用，请勿用于非法用途。</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+        
 
         <!-- 新增用户信任背书板块 -->
         <section class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-10 overflow-hidden relative">
