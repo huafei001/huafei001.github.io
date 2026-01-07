@@ -993,6 +993,202 @@
             </div>
         </section>
 
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="counter-widget">
+    <style>
+        .counter-widget {
+            max-width: 320px;
+            margin: 30px auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.1);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            border: 1px solid #e8f0fe;
+            position: relative;
+            overflow: hidden;
+        }
+        .counter-widget::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa, #93c5fd);
+        }
+        .counter-header {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .counter-header i {
+            color: #3b82f6;
+            font-size: 18px;
+        }
+        .counter-stat-single {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        .counter-stat-single:hover {
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+        }
+        .stat-item-single {
+            text-align: center;
+            flex: 1;
+        }
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: #e2e8f0;
+            margin: 0 10px;
+        }
+        .stat-number {
+            font-size: 30px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .stat-label i {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+        .update-time {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #f1f5f9;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .counter-header, .counter-stat-single {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes countUp {
+            from { opacity: 0.5; transform: translateY(3px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stat-number {
+            animation: countUp 0.8s ease-out forwards;
+        }
+    </style>
+
+    <div class="counter-header">
+        <i class="fa-solid fa-server"></i>
+        网站运行统计
+    </div>
+    
+    <div class="counter-stat-single">
+        <div class="stat-item-single" id="totalVisitorsBox">
+            <div class="stat-number" id="totalVisitors">0</div>
+            <div class="stat-label">
+                <i class="fa-solid fa-globe"></i>
+                总访问量
+            </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item-single" id="runTimeBox">
+            <div class="stat-number" id="runTime">0</div>
+            <div class="stat-label">
+                <i class="fa-solid fa-clock"></i>
+                运行天数
+            </div>
+        </div>
+    </div>
+
+    <div class="update-time" id="updateTime"></div>
+
+    <script>
+        function initCounter() {
+            // 核心配置：网站上线日期，格式为 年, 月-1, 日
+            const LAUNCH_DATE = new Date(2026, 0, 1); 
+            // 总访问量默认值
+            let total = parseInt(localStorage.getItem('totalVisitors')) || 8699;
+            
+            // 计算运行天数
+            const today = new Date();
+            const timeDiff = today - LAUNCH_DATE;
+            const runDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+            // 更新总访问量
+            total += 1;
+
+            // 数字滚动动画
+            function animateNumber(target, element) {
+                let current = parseInt(element.textContent) || 0;
+                const duration = 1000;
+                const start = performance.now();
+                let animationFrame;
+                
+                function update(timestamp) {
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    const value = Math.floor(current + (target - current) * easeProgress);
+                    element.textContent = value.toLocaleString();
+                    if (progress < 1) animationFrame = requestAnimationFrame(update);
+                }
+                animationFrame = requestAnimationFrame(update);
+                return () => cancelAnimationFrame(animationFrame);
+            }
+
+            // 执行动画
+            animateNumber(total, document.getElementById('totalVisitors'));
+            document.getElementById('runTime').textContent = runDays;
+
+            // 存储数据
+            localStorage.setItem('totalVisitors', total);
+            const lastUpdateTime = new Date().toLocaleString();
+            localStorage.setItem('lastUpdateTime', lastUpdateTime);
+            document.getElementById('updateTime').textContent = `更新于：${lastUpdateTime}`;
+        }
+
+        if (document.readyState === 'complete') {
+            initCounter();
+        } else {
+            window.addEventListener('load', initCounter);
+        }
+    </script>
+</div>
+
+
+
+
+
+
+
+            
         <!-- 科技感页脚 -->
         <footer id="contact" class="bg-slate-900 rounded-2xl p-6 text-white relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-techCyan to-techPurple"></div>
