@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主流交易所下载 - 彦祖之家</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        okx: '#00CC76',
+                        huobi: '#0061FE',
+                        binance: '#F3BA2F', // 币安品牌色
+                        techCyan: '#22d3ee',
+                        techPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .download-card {
+                transition: all 0.3s ease;
+            }
+            .download-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-okx via-binance to-huobi;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <!-- 导航栏 -->
+        <nav class="bg-gradient-to-r from-slate-900 to-blue-900 rounded-2xl mb-6 p-4 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-okx via-binance to-huobi"></div>
+            <div class="flex justify-between items-center relative z-10">
+                <div class="flex items-center gap-2">
+                    <i class="fa fa-line-chart text-binance text-xl"></i>
+                    <span class="text-white font-bold text-lg">彦祖之家 - 交易所下载</span>
+                </div>
+                <a href="index.html" class="text-gray-300 hover:text-binance transition-colors flex items-center">
+                    <i class="fa fa-arrow-left mr-1"></i> 返回首页
+                </a>
+            </div>
+            <!-- 装饰元素 -->
+            <div class="absolute top-1/2 right-10 w-40 h-40 bg-binance/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-20 w-60 h-60 bg-huobi/10 rounded-full blur-3xl"></div>
+        </nav>
+
+        <!-- 页面标题区 -->
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 mb-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-binance/5 rounded-full -mr-16 -mt-16"></div>
+            <div class="relative z-10">
+                <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gradient mb-3">主流交易所官方下载</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    提供币安、欧易、火币等正规交易所官方下载链接，拒绝第三方渠道，保障您的账户安全
+                </p>
+                <div class="mt-4 inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm">
+                    <i class="fa fa-shield mr-1"></i> 安全提示：仅从官方渠道下载，谨防钓鱼软件
+                </div>
+            </div>
+        </div>
+
+        <!-- 交易所下载列表 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <!-- 币安交易所 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 overflow-hidden relative download-card">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-binance/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-binance/10 flex items-center justify-center mr-3">
+                            <i class="fa fa-bitcoin text-binance text-xl"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-gray-800">币安 Binance</h2>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="text-gray-500 mb-1">安卓客户端下载</p>
+                            <a href="https://download.bmwweb.link/pack/BNApp_00000058.apk" target="_blank" class="inline-block px-4 py-2 bg-binance text-white rounded-lg hover:bg-binance/90 transition-colors mb-2">
+                                <i class="fa fa-android mr-1"></i> 立即下载
+                            </a>
+                            <p class="text-gray-400 text-xs">（复制链接到浏览器下载，建议关闭VPN）</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">iOS客户端下载指引</p>
+                            <a href="https://www.bmwweb.link/download-guide?hl=zh-CN" target="_blank" class="inline-block px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors mb-2">
+                                <i class="fa fa-apple mr-1"></i> 查看指引
+                            </a>
+                            <p class="text-gray-400 text-xs">（需使用国外Apple ID登录App Store下载）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 欧易交易所 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 overflow-hidden relative download-card">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-okx/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-okx/10 flex items-center justify-center mr-3">
+                            <i class="fa fa-line-chart text-okx text-xl"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-gray-800">欧易 OKX</h2>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="text-gray-500 mb-1">官方注册链接</p>
+                            <a href="https://www.okx.com/cn/join/39338964" target="_blank" class="text-primary hover:underline break-all">
+                                https://www.okx.com/cn/join/39338964
+                            </a>
+                            <p class="text-gray-400 text-xs mt-1">（请勿使用美国、香港IP访问）</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">大陆专属注册链接</p>
+                            <a href="https://www.firgrouxywebb.com/join/39338964" target="_blank" class="text-primary hover:underline break-all">
+                                www.firgrouxywebb.com/join/39338964
+                            </a>
+                            <p class="text-gray-400 text-xs mt-1">（关闭VPN后访问）</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">安卓客户端下载</p>
+                            <a href="https://download.fpnodexq.com/upgradeapp/android_37897116.apk" target="_blank" class="inline-block px-4 py-2 bg-okx text-white rounded-lg hover:bg-okx/90 transition-colors">
+                                <i class="fa fa-android mr-1"></i> 立即下载
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 火币交易所 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 overflow-hidden relative download-card">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-huobi/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-huobi/10 flex items-center justify-center mr-3">
+                            <i class="fa fa-exchange text-huobi text-xl"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-gray-800">火币 HTX</h2>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="text-gray-500 mb-1">官网注册链接</p>
+                            <a href="https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223" target="_blank" class="text-primary hover:underline break-all">
+                                https://www.htx.com.do/invite/zh-cn/1f?invite_code=wdsw8223
+                            </a>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">大陆访问链接</p>
+                            <a href="https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223" target="_blank" class="text-primary hover:underline break-all">
+                                https://www.htx.com.pk/invite/zh-cn/1h?invite_code=5zqd9223
+                            </a>
+                            <p class="text-gray-400 text-xs mt-1">（关闭VPN后访问）</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">安卓客户端下载</p>
+                            <a href="https://global-prd-client-download.oss-cn-hongkong.aliyuncs.com/app/HB5zqd9223.apk" target="_blank" class="inline-block px-4 py-2 bg-huobi text-white rounded-lg hover:bg-huobi/90 transition-colors">
+                                <i class="fa fa-android mr-1"></i> 立即下载
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 安全提示 -->
+        <section class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
+            <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">
+                <i class="fa fa-exclamation-triangle text-primary mr-2"></i> 下载安全须知
+            </h2>
+            <ul class="space-y-2 text-gray-600 text-sm">
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-okx mt-0.5 mr-2"></i>
+                    <span>仅通过官方渠道下载客户端，切勿安装来源不明的APK文件</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-okx mt-0.5 mr-2"></i>
+                    <span>安装前开启手机"未知来源应用"权限，安装后建议关闭</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-okx mt-0.5 mr-2"></i>
+                    <span>使用交易所时，务必开启二次验证，提升账户安全等级</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-okx mt-0.5 mr-2"></i>
+                    <span>不要向任何人泄露账户密码、验证码、私钥等敏感信息</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 底部版权 -->
+        <footer class="bg-slate-900 rounded-2xl p-4 text-center text-gray-400 text-xs">
+            <p>© 2025 彦祖之家 版权所有 | 仅提供官方下载指引，不参与任何交易</p>
+        </footer>
+    </div>
+</body>
+</html>
