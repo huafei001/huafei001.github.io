@@ -491,60 +491,231 @@
                 </div>
             </div>
 
-            <!-- FAQ列表 -->
-            <div class="space-y-3">
-                <!-- 问题1 -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="w-full flex justify-between items-center p-3 text-left bg-slate-50" onclick="toggleFaq(this)">
-                        <span class="font-medium text-gray-800">支持哪些地区的缴费？</span>
-                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all bg-white">
-                        <div class="p-3 text-gray-600 text-sm">
-                            全国国网、南网电力，主流城市水燃气，移动/联通/电信三网话费均可充值，偏远地区可咨询客服。
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 问题2 -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="w-full flex justify-between items-center p-3 text-left bg-slate-50" onclick="toggleFaq(this)">
-                        <span class="font-medium text-gray-800">加密支付支持哪些币种？</span>
-                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all bg-white">
-                        <div class="p-3 text-gray-600 text-sm">
-                            支持USDT（ERC20/TRC20）转账后上传发送凭证即可。
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 问题3 -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="w-full flex justify-between items-center p-3 text-left bg-slate-50" onclick="toggleFaq(this)">
-                        <span class="font-medium text-gray-800">未到账怎么办？</span>
-                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all bg-white">
-                        <div class="p-3 text-gray-600 text-sm">
-                            72小时未到账可随时联系客服，支持原币种退款。
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 问题4 -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="w-full flex justify-between items-center p-3 text-left bg-slate-50" onclick="toggleFaq(this)">
-                        <span class="font-medium text-gray-800">加密支付汇率怎么算？</span>
-                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all bg-white">
-                        <div class="p-3 text-gray-600 text-sm">
-                            实时对接交易所行情，下单锁定价格，无溢价，延迟到账多退少补。
-                        </div>
+
+
+
+
+<!-- 美化版 FAQ 板块（与网站风格一致） -->
+<style>
+    /* 复用网站全局变量，保证风格统一 */
+    :root {
+        --primary: #6366f1;
+        --techPurple: #8b5cf6;
+        --techCyan: #22d3ee;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-600: #4b5563;
+        --gray-800: #1f2937;
+        --white: #ffffff;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --rounded-2xl: 1rem;
+        --rounded-lg: 0.5rem;
+    }
+
+    /* FAQ 核心样式 - 与网站组件风格对齐 */
+    .faq-section {
+        position: relative;
+        background-color: var(--white);
+        border-radius: var(--rounded-2xl);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--gray-100);
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+        overflow: hidden;
+    }
+
+    .faq-bg-blur {
+        position: absolute;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        filter: blur(2rem);
+        opacity: 0.5;
+    }
+
+    .faq-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .faq-title-icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: rgba(99, 102, 241, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+    }
+
+    .faq-item {
+        border: 1px solid var(--gray-200);
+        border-radius: var(--rounded-lg);
+        overflow: hidden;
+        transition: all 0.2s ease;
+    }
+
+    .faq-item:hover {
+        border-color: rgba(99, 102, 241, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .faq-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        text-align: left;
+        background-color: var(--gray-100);
+        border: none;
+        cursor: pointer;
+        font-size: 0.9375rem;
+        color: var(--gray-800);
+        font-weight: 500;
+    }
+
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background-color: var(--white);
+    }
+
+    .faq-content-inner {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        line-height: 1.5;
+    }
+
+    .faq-item.active .faq-content {
+        max-height: 200px;
+    }
+
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+        color: var(--primary);
+    }
+
+    .faq-icon {
+        transition: all 0.3s ease;
+        color: var(--gray-600);
+    }
+
+    .faq-help-text {
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--gray-600);
+    }
+
+    .faq-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .faq-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<section class="faq-section">
+    <!-- 背景装饰 blur 球 -->
+    <div class="faq-bg-blur" style="top: 0; right: 0; background-color: rgba(139, 92, 246, 0.05);"></div>
+    <div class="faq-bg-blur" style="bottom: 0; left: 0; background-color: rgba(34, 211, 238, 0.05);"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+        <!-- FAQ 标题 -->
+        <div class="faq-title-wrap">
+            <div class="faq-title-icon">
+                <i class="fa fa-question-circle"></i>
+            </div>
+            <h2 class="text-xl font-bold text-gray-800">常见问题</h2>
+        </div>
+
+        <!-- FAQ 列表 -->
+        <div class="space-y-3">
+            <!-- 问题1 -->
+            <div class="faq-item">
+                <button class="faq-btn" onclick="toggleFaqItem(this.parentElement)">
+                    <span>支持哪些地区的缴费？</span>
+                    <i class="fa fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        全国国网、南网电力，主流城市水燃气，移动/联通/电信三网话费均可充值，偏远地区可咨询客服。
                     </div>
                 </div>
             </div>
+
+            <!-- 问题2 -->
+            <div class="faq-item">
+                <button class="faq-btn" onclick="toggleFaqItem(this.parentElement)">
+                    <span>加密支付支持哪些币种？</span>
+                    <i class="fa fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        支持USDT（ERC20/TRC20）、BTC、ETH，转账后上传哈希凭证即可。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题3 -->
+            <div class="faq-item">
+                <button class="faq-btn" onclick="toggleFaqItem(this.parentElement)">
+                    <span>多久到账？不到账怎么办？</span>
+                    <i class="fa fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        72小时未到账可凭订单号联系客服，全额退款支持原币种返还。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题4 -->
+            <div class="faq-item">
+                <button class="faq-btn" onclick="toggleFaqItem(this.parentElement)">
+                    <span>加密支付汇率怎么算？</span>
+                    <i class="fa fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        实时对接交易所行情，下单锁定价格，无溢价，延迟到账多退少补。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 帮助引导 -->
+        <div class="faq-help-text">
+            其他疑问？<a href="http://t.me/svip996699" class="faq-link">联系客服</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 独立无冲突的切换函数
+    function toggleFaqItem(faqItem) {
+        // 如需同时展开多个，删除下方循环代码
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) item.classList.remove('active');
+        });
+        faqItem.classList.toggle('active');
+    }
+</script>
+
+
+            
 
             <!-- 简化引导 -->
             <div class="mt-4 text-center text-sm text-gray-500">
