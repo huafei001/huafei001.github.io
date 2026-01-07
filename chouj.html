@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定奖品抽奖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .prize-item {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, box-shadow;
+        }
+        .prize-item.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
+            border-color: #22d3ee;
+            z-index: 10;
+        }
+        .marquee-pulse {
+            animation: pulse 0.1s ease-in-out infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+        .btn-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #22d3ee, #a855f7);
+        }
+        .border-gradient {
+            border-image: linear-gradient(90deg, #22d3ee, #a855f7) 1;
+        }
+        .modal-enter {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- 标题区域 -->
+        <div class="text-center mb-10 pt-4">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">
+                <span class="text-gradient flex items-center justify-center">
+                    <i class="fa fa-gift mr-2 text-techCyan"></i>幸运大抽奖
+                </span>
+            </h1>
+            <p class="text-gray-500 max-w-md mx-auto">点击中心按钮启动抽奖，100%中奖5元优惠券</p>
+        </div>
+
+        <!-- 矩形奖品区 -->
+        <div class="relative w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-xl p-6 md:p-8 mb-10 overflow-hidden">
+            <!-- 背景装饰 -->
+            <div class="absolute -top-20 -right-20 w-60 h-60 bg-techCyan/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-30 -left-20 w-80 h-80 bg-techPurple/10 rounded-full blur-3xl"></div>
+            
+            <!-- 第一行奖品 -->
+            <div class="flex justify-between mb-6 relative z-10">
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-mobile text-3xl text-blue-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">50元话费</span>
+                </div>
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-shopping-bag text-3xl text-purple-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">100元购物卡</span>
+                </div>
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-film text-3xl text-green-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">电影票2张</span>
+                </div>
+            </div>
+
+            <!-- 第二行奖品 + 中间按钮 -->
+            <div class="flex justify-between items-center mb-6 relative z-10">
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-coffee text-3xl text-yellow-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">咖啡券</span>
+                </div>
+                
+                <!-- 中间抽奖按钮 -->
+                <button id="spinBtn" class="w-36 h-36 rounded-full bg-gradient-to-br from-techCyan to-techPurple text-white font-bold text-xl shadow-lg flex items-center justify-center btn-float border-4 border-white/30">
+                    开始抽奖
+                </button>
+                
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-gamepad text-3xl text-red-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">游戏手柄</span>
+                </div>
+            </div>
+
+            <!-- 第三行奖品 -->
+            <div class="flex justify-between relative z-10">
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-book text-3xl text-teal-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">图书券</span>
+                </div>
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-headphones text-3xl text-indigo-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">无线耳机</span>
+                </div>
+                <div class="prize-item glass-effect rounded-xl p-5 w-28 h-28 flex flex-col items-center justify-center border-2 border-gray-200">
+                    <i class="fa fa-cutlery text-3xl text-orange-500 mb-3"></i>
+                    <span class="text-sm font-medium text-gray-800">餐饮券</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中奖记录 -->
+        <div class="bg-white rounded-2xl shadow-lg p-5 mb-8">
+            <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fa fa-history text-techPurple mr-2"></i>最近中奖记录
+            </h3>
+            <div class="space-y-3 max-h-48 overflow-y-auto pr-2" id="recordList">
+                <div class="text-sm p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                    <span class="font-medium">张三</span>
+                    <span class="text-purple-500">5元优惠券</span>
+                    <span class="text-gray-400">5分钟前</span>
+                </div>
+                <div class="text-sm p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                    <span class="font-medium">李四</span>
+                    <span class="text-green-500">5元优惠券</span>
+                    <span class="text-gray-400">12分钟前</span>
+                </div>
+                <div class="text-sm p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                    <span class="font-medium">王五</span>
+                    <span class="text-indigo-500">5元优惠券</span>
+                    <span class="text-gray-400">28分钟前</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 中奖弹窗 -->
+    <div id="winModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden modal-enter">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full mx-4">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <i class="fa fa-check text-3xl text-green-500"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">恭喜中奖！</h2>
+                <p class="text-gray-600 mb-6">您获得了 <span class="font-bold text-blue-500">5元优惠券</span></p>
+                <p class="text-gray-500 text-sm mb-4">请按照以下方式领取：</p>
+                <div class="bg-gray-50 rounded-lg p-4 text-left text-sm text-gray-600 mb-4">
+                    <p class="mb-2"><i class="fa fa-telegram text-blue-500 mr-2"></i> 联系客服：@svip996699</p>
+                    <p class="mb-2"><i class="fa fa-keyboard text-purple-500 mr-2"></i> 发送：<span class="font-medium">兑换码: 5YUAN2024</span></p>
+                    <p><i class="fa fa-clock-o text-gray-400 mr-2"></i> 有效期：7天</p>
+                </div>
+                <button id="closeBtn" class="w-full bg-gradient-to-r from-techCyan to-techPurple text-white py-3 px-6 rounded-xl font-medium hover:opacity-90 transition-opacity">
+                    确认领取
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        techCyan: '#22d3ee',
+                        techPurple: '#a855f7',
+                    }
+                }
+            }
+        }
+
+        // 获取元素
+        const spinBtn = document.getElementById('spinBtn');
+        const prizeItems = document.querySelectorAll('.prize-item');
+        const winModal = document.getElementById('winModal');
+        const closeBtn = document.getElementById('closeBtn');
+        const recordList = document.getElementById('recordList');
+        
+        let isSpinning = false;
+        const names = ['张三', '李四', '王五', '赵六', '孙七', '周八', '吴九', '郑十', '钱十一', '孙十二'];
+
+        // 开始抽奖
+        spinBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+            isSpinning = true;
+            spinBtn.textContent = '抽奖中...';
+            spinBtn.classList.remove('btn-float');
+            
+            // 清除所有激活状态
+            prizeItems.forEach(item => item.classList.remove('active', 'marquee-pulse'));
+            
+            // 固定中奖位置（例如第一个奖品）
+            const winningIndex = 0;
+            const winningItem = prizeItems[winningIndex];
+            
+            // 跑马灯动画
+            let speed = 50;
+            let count = 0;
+            const totalCount = 80 + Math.floor(Math.random() * 40);
+            
+            const spinInterval = setInterval(() => {
+                // 随机选择奖品
+                const randomIndex = Math.floor(Math.random() * prizeItems.length);
+                const nextItem = prizeItems[randomIndex];
+                nextItem.classList.add('active', 'marquee-pulse');
+                
+                // 逐渐减速
+                count++;
+                if (count > totalCount * 0.8) speed = 200;
+                else if (count > totalCount * 0.5) speed = 120;
+                else if (count > totalCount * 0.3) speed = 80;
+                
+                // 清除并重置定时器
+                clearInterval(spinInterval);
+                if (count < totalCount) {
+                    spinInterval = setInterval(() => {}, speed);
+                } else {
+                    clearInterval(spinInterval);
+                    setTimeout(() => {
+                        // 显示中奖信息
+                        winningItem.classList.add('active', 'marquee-pulse');
+                        winModal.classList.remove('hidden');
+                        winModal.classList.add('modal-enter-active');
+                        
+                        // 添加到中奖记录
+                        addRecord();
+                        
+                        // 重置按钮
+                        setTimeout(() => {
+                            spinBtn.textContent = '开始抽奖';
+                            spinBtn.classList.add('btn-float');
+                            isSpinning = false;
+                        }, 1000);
+                    }, 800);
+                }
+            }, speed);
+        });
+
+        // 关闭弹窗
+        closeBtn.addEventListener('click', () => {
+            winModal.classList.remove('modal-enter-active');
+            winModal.classList.add('hidden');
+            prizeItems.forEach(item => item.classList.remove('active', 'marquee-pulse'));
+        });
+
+        // 添加中奖记录
+        function addRecord() {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const timeAgo = Math.floor(Math.random() * 30) + 1;
+            const record = document.createElement('div');
+            record.className = 'text-sm p-3 bg-gray-50 rounded-lg flex justify-between items-center transform translate-y-4 opacity-0 transition-all duration-500';
+            record.innerHTML = `
+                <span class="font-medium">${randomName}</span>
+                <span class="text-purple-500">5元优惠券</span>
+                <span class="text-gray-400">${timeAgo}分钟前</span>
+            `;
+            recordList.prepend(record);
+            setTimeout(() => {
+                record.classList.remove('translate-y-4', 'opacity-0');
+            }, 100);
+            if (recordList.children.length > 8) {
+                recordList.removeChild(recordList.lastChild);
+            }
+        }
+    </script>
+</body>
+</html>
