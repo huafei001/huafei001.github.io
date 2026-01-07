@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘瑞泽宝宝的时光小站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #fef7fb 0%, #fcf1f7 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .birthday-card {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(180deg, #ffffff 0%, #faf0f5 100%);
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(233, 69, 96, 0.12);
+            padding: 45px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #fde2ec;
+            margin-bottom: 40px;
+        }
+
+        .birthday-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff8a9a, #ffc2d1, #ff8a9a);
+        }
+
+        .birthday-card::after {
+            content: "";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 182, 193, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .card-header {
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .baby-name {
+            font-size: 32px;
+            color: #e94560;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(233, 69, 96, 0.2);
+        }
+
+        .card-subtitle {
+            font-size: 17px;
+            color: #777;
+            font-weight: 500;
+        }
+
+        .time-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            flex: 1;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe6eb 100%);
+            padding: 25px 15px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            border: 1px solid #fad4e0;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            color: #e94560;
+            margin-bottom: 12px;
+        }
+
+        .stat-number {
+            font-size: 38px;
+            font-weight: 700;
+            color: #333;
+            margin: 10px 0;
+            line-height: 1;
+            background: linear-gradient(90deg, #e94560, #ff6b81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .update-time {
+            font-size: 14px;
+            color: #999;
+            padding-top: 20px;
+            border-top: 1px dashed #f8c4d0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 成长里程碑样式 */
+        .milestone-section {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.08);
+            border: 1px solid #fde2ec;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #e94560;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .milestone-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #fff5f7;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .milestone-item:hover {
+            transform: translateX(5px);
+        }
+
+        .milestone-date {
+            min-width: 80px;
+            font-size: 14px;
+            color: #e94560;
+            font-weight: 600;
+        }
+
+        .milestone-content {
+            flex: 1;
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* 照片墙样式 */
+        .photo-wall {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.08);
+            border: 1px solid #fde2ec;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .photo-item {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: #fef7fb;
+            border: 1px solid #fad4e0;
+            transition: all 0.3s ease;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.1);
+        }
+
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .baby-name {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0.6; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-number {
+            animation: countUp 1s ease-out forwards;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 480px) {
+            .time-stats {
+                flex-direction: column;
+            }
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 天数统计卡片 -->
+    <div class="birthday-card">
+        <div class="card-header">
+            <div class="baby-name">刘瑞泽宝宝</div>
+            <div class="card-subtitle">成长时光记录 · 每一天都值得珍藏</div>
+        </div>
+
+        <div class="time-stats">
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <div class="stat-number" id="bornDays">0</div>
+                <div class="stat-label">已出生天数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-solid fa-gift"></i></div>
+                <div class="stat-number" id="nextBirthdayDays">0</div>
+                <div class="stat-label">距离下一个生日</div>
+            </div>
+        </div>
+
+        <div class="update-time" id="updateTime"></div>
+    </div>
+
+    <!-- 成长里程碑 -->
+    <div class="milestone-section">
+        <h3 class="section-title"><i class="fa-solid fa-star"></i> 成长里程碑</h3>
+        <div class="milestone-list">
+            <div class="milestone-item">
+                <div class="milestone-date">第1天</div>
+                <div class="milestone-content">呱呱坠地，和这个世界初次见面</div>
+            </div>
+            <div class="milestone-item">
+                <div class="milestone-date">第20天</div>
+                <div class="milestone-content">第一次对爸爸妈妈露出微笑</div>
+            </div>
+            <div class="milestone-item">
+                <div class="milestone-date">第60天</div>
+                <div class="milestone-content">学会了翻身，解锁新技能</div>
+            </div>
+            <div class="milestone-item">
+                <div class="milestone-date">第100天</div>
+                <div class="milestone-content">拍了百天照，变成小萌娃</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 宝宝照片墙 -->
+    <div class="photo-wall">
+        <h3 class="section-title"><i class="fa-solid fa-camera"></i> 萌趣照片墙</h3>
+        <div class="photo-grid">
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=1" alt="宝宝照片1">
+            </div>
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=2" alt="宝宝照片2">
+            </div>
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=3" alt="宝宝照片3">
+            </div>
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=4" alt="宝宝照片4">
+            </div>
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=5" alt="宝宝照片5">
+            </div>
+            <div class="photo-item">
+                <img src="https://picsum.photos/200/200?random=6" alt="宝宝照片6">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 核心配置：修改为宝宝的真实出生日期 年, 月-1, 日
+        const BABY_BIRTHDAY = new Date(2025, 10, 23); 
+
+        function animateNumber(target, element) {
+            let current = 0;
+            const duration = 1500;
+            const start = performance.now();
+            let animationFrame;
+
+            function update(timestamp) {
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                current = Math.floor(target * easeProgress);
+                element.textContent = current;
+                if (progress < 1) animationFrame = requestAnimationFrame(update);
+            }
+            animationFrame = requestAnimationFrame(update);
+            return () => cancelAnimationFrame(animationFrame);
+        }
+
+        function calculateDays() {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            // 计算已出生天数
+            const bornTimeDiff = today - BABY_BIRTHDAY;
+            const bornDays = Math.floor(bornTimeDiff / (1000 * 60 * 60 * 24));
+
+            // 计算下一个生日日期
+            let nextBirthdayYear = now.getFullYear();
+            const nextBirthday = new Date(nextBirthdayYear, BABY_BIRTHDAY.getMonth(), BABY_BIRTHDAY.getDate());
+            if (nextBirthday < today) {
+                nextBirthdayYear += 1;
+                nextBirthday.setFullYear(nextBirthdayYear);
+            }
+
+            // 计算距离下一个生日的天数
+            const nextBirthdayDiff = nextBirthday - today;
+            const nextBirthdayDays = Math.floor(nextBirthdayDiff / (1000 * 60 * 60 * 24));
+
+            // 执行数字滚动动画
+            animateNumber(bornDays, document.getElementById('bornDays'));
+            animateNumber(nextBirthdayDays, document.getElementById('nextBirthdayDays'));
+            
+            document.getElementById('updateTime').textContent = `数据更新于 ${now.toLocaleString()}`;
+        }
+
+        // 页面加载时计算一次
+        calculateDays();
+        // 每天自动更新
+        setInterval(calculateDays, 24 * 60 * 60 * 1000);
+    </script>
+</body>
+</html>
