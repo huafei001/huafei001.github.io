@@ -230,17 +230,210 @@
             <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/5 rounded-full opacity-70"></div>
             
             <div class="relative z-10">
-                <!-- 标题栏 -->
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                        <i class="fa fa-money text-primary text-xl"></i>
-                    </div>
-                    <h1 class="text-[clamp(1.5rem,5vw,2rem)] font-bold text-gray-800">服务有价  真诚无价</h1>
-                </div>
-                <!-- 说明文本 -->
-                <p class="text-gray-600 leading-relaxed mb-6 pl-1">所有交易支持0手续费退款！支持无理由退款！支持超时退款！
-                    
-                </p>
+
+
+
+
+
+<!-- 引入Font Awesome图标库 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* 价格板块容器 - 窄版品牌化适配 */
+.usdt-price-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+/* 彦祖之家风格卡片 - 科技感核心设计 */
+.usdt-price-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    border-radius: 16px;
+    border: 1px solid #e1f5fe;
+    padding: 20px 16px;
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+/* 品牌化悬浮动效 - 更具张力的交互反馈 */
+.usdt-price-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2), 0 0 0 1px #0ea5e9;
+    border-color: #0ea5e9;
+}
+/* 彦祖之家标志性渐变竖线 - 强化品牌视觉符号 */
+.usdt-price-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #0ea5e9 0%, #38bdf8 50%, #60a5fa 100%);
+}
+/* 品牌科技感图标 - 立体磨砂质感 */
+.price-icon {
+    font-size: 22px;
+    color: #0ea5e9;
+    background: linear-gradient(145deg, rgba(14, 165, 233, 0.1), rgba(56, 189, 248, 0.05));
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(14, 165, 233, 0.1);
+}
+/* 文本内容区 - 层级分明的品牌排版 */
+.price-content {
+    flex: 1;
+}
+.price-label {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+/* 品牌小图标 - 精致点缀 */
+.price-label i {
+    font-size: 11px;
+    color: #0ea5e9;
+    animation: rotate 2s linear infinite;
+}
+/* 核心价格数值 - 品牌高亮展示 */
+.price-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    position: relative;
+}
+/* 价格数值发光效果 - 科技感强化 */
+.price-value:not(.loading):not(.error)::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0ea5e9, transparent);
+    opacity: 0.5;
+}
+/* 加载动画 - 品牌风格优化 */
+.loading {
+    color: #0ea5e9;
+    font-size: 24px;
+    font-weight: 500;
+    position: relative;
+}
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0ea5e9;
+    transform: translateY(-50%);
+    animation: blink 1.5s infinite;
+}
+/* 错误状态 - 品牌警示色 */
+.error {
+    color: #ef4444;
+    font-size: 24px;
+    font-weight: 500;
+}
+/* 更新时间 - 品牌化分割线 */
+.update-time {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(14, 165, 233, 0.1);
+}
+/* 辅助动画 - 品牌质感提升 */
+@keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<!-- USDT/CNY 实时价格板块（彦祖之家风格） -->
+<div class="usdt-price-section">
+    <div class="usdt-price-card">
+        <div class="price-icon">
+            <i class="fa fa-money-bill-wave"></i>
+        </div>
+        <div class="price-content">
+            <div class="price-label">
+                <i class="fa fa-refresh"></i>
+                彦祖之家 · USDT/CNY 汇率
+            </div>
+            <div id="usdt-cny-price" class="price-value loading">加载中</div>
+            <div id="price-update-time" class="update-time"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// DOM元素获取
+const priceElement = document.getElementById('usdt-cny-price');
+const timeElement = document.getElementById('price-update-time');
+
+// 获取USDT/CNY价格函数
+function fetchUsdtCnyPrice() {
+    const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=cny';
+    
+    // 显示加载状态
+    priceElement.className = 'price-value loading';
+    priceElement.textContent = '加载中';
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('数据请求失败');
+            return response.json();
+        })
+        .then(data => {
+            const usdtCny = data.tether.cny;
+            // 显示价格，保留4位小数
+            priceElement.className = 'price-value';
+            priceElement.textContent = `¥ ${usdtCny.toFixed(4)}`;
+            
+            // 更新时间
+            const now = new Date();
+            timeElement.textContent = `最后更新：${now.toLocaleString('zh-CN')}`;
+        })
+        .catch(error => {
+            priceElement.className = 'price-value error';
+            priceElement.textContent = '获取失败';
+            timeElement.textContent = `错误：${error.message}`;
+            console.error('价格获取失败：', error);
+        });
+}
+
+// 页面加载时获取一次
+fetchUsdtCnyPrice();
+
+// 每10秒自动刷新一次
+setInterval(fetchUsdtCnyPrice, 10000);
+</script>
+
+
+                
                 
                 <!-- 科技感数据卡片 -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
