@@ -175,55 +175,132 @@
 <style>body{max-width:750px;margin:0 auto;}</style>
 
         
-        <!-- 带弹幕的公告板块 -->
-        <div class="relative bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 shadow-md border border-blue-100 mb-6 overflow-hidden transition-all duration-300 hover:shadow-lg">
-            <!-- 装饰元素 -->
-            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-full opacity-50 -mr-12 -mt-12"></div>
-            <div class="absolute bottom-0 left-0 w-16 h-16 bg-indigo-100 rounded-full opacity-50 -ml-8 -mb-8"></div>
-            
-            <!-- 通知公告标题 -->
-            <div class="flex items-center mb-3 pb-2 border-b border-blue-100 relative z-10">
-                <div class="w-6 h-6 rounded-full bg-notice flex items-center justify-center mr-2">
-                    <i class="fa fa-bullhorn text-white text-xs"></i>
-                </div>
-                <h3 class="font-semibold text-gray-800">通知公告</h3>
-                <span class="ml-2 text-xs text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full">实时更新</span>
-            </div>
-            
-            <!-- 第一行：客服与社群信息 -->
-            <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
-                <div class="marquee-content row-1 flex items-center h-full">
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@svip996699</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-comments text-purple-500 mr-1"></i> 不禁言交流群@huafeiXL1</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-user-circle text-primary mr-1"></i> 客服TG@o4272</span>
-                </div>
-            </div>
-            
-            <!-- 第二行：安全与合作提示 -->
-            <div class="marquee-row h-9 overflow-hidden mb-2 relative z-10">
-                <div class="marquee-content row-2 flex items-center h-full">
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-shield text-green-500 mr-1"></i> 注意防骗</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-handshake-o text-blue-500 mr-1"></i> 诚信交易</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-line-chart text-indigo-500 mr-1"></i> 合作共赢</span>
-                    <span class="inline-block mx-6 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exclamation-triangle text-yellow-500 mr-1"></i> 警惕任何私聊消息</span>
-                </div>
-            </div>
-            
-            <!-- 第三行：服务与支持信息 -->
-            <div class="marquee-row h-9 overflow-hidden relative z-10">
-                <div class="marquee-content row-3 flex items-center h-full">
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-bolt text-yellow-600 mr-1"></i> 电费速度一般</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-clock-o text-gray-500 mr-1"></i> 72小时到账</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-exchange text-blue-500 mr-1"></i> 支持主流交易所</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-percent text-green-500 mr-1"></i> 0手续费交易</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-refresh text-purple-500 mr-1"></i> 随时退款</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-download text-blue-500 mr-1"></i> 常用软件下载地址在最下面</span>
-                    <span class="inline-block mx-4 px-3 py-1 bg-white/80 rounded-full shadow-sm"><i class="fa fa-fire text-orange-500 mr-1"></i> 燃气速度提升30%</span>
-                </div>
-            </div>
+      <!-- 通知公告板块 -->
+<div class="bg-white rounded-2xl shadow-lg p-5 mb-6 border border-gray-100 overflow-hidden relative">
+  <!-- 标题栏 -->
+  <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <i class="fa fa-bullhorn text-techCyan"></i> 通知公告
+    </div>
+    <button class="text-xs text-gray-400 hover:text-gray-500 transition-colors" onclick="toggleNoticeMarquee()">
+      <i class="fa fa-pause mr-1"></i> 暂停
+    </button>
+  </h3>
+
+  <!-- 公告滚动容器 -->
+  <div class="notice-container h-[120px] overflow-hidden relative">
+    <div class="notice-list space-y-3" id="noticeList">
+      <!-- 公告内容由JS动态生成 -->
+    </div>
+  </div>
+
+  <!-- 渐变遮罩 -->
+  <div class="absolute top-16 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
+  <div class="absolute bottom-5 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+</div>
+
+<script>
+// 公告数据池
+const noticeDataPool = [
+  { id: 1, title: "平台新增支持电费、水费代缴服务", time: "2026-01-15", type: "service" },
+  { id: 2, title: "加密货币兑换费率调整通知，2026-01-20 正式生效", time: "2026-01-10", type: "fee" },
+  { id: 3, title: "春节期间（2026.02.10-02.17）充值到账时间延长至2小时", time: "2026-01-05", type: "holiday" },
+  { id: 4, title: "【安全提示】请勿向陌生账户转账，谨防电信诈骗", time: "2026-01-01", type: "security" },
+  { id: 5, title: "新用户注册即享首单减免5元优惠，活动截止2026-02-28", time: "2025-12-28", type: "activity" }
+];
+
+// 全局变量
+let noticeScrollSpeed = 0.6;
+let noticeScrollPosition = 0;
+let noticeHeight = 0;
+let noticeMarqueeTimer = null;
+let isNoticePaused = false;
+
+// 生成公告HTML
+function generateNoticeHtml(notice) {
+  // 根据公告类型定义图标和颜色
+  const typeConfig = {
+    service: { icon: "fa-server", color: "text-blue-500" },
+    fee: { icon: "fa-calculator", color: "text-purple-500" },
+    holiday: { icon: "fa-calendar", color: "text-red-500" },
+    security: { icon: "fa-shield", color: "text-green-500" },
+    activity: { icon: "fa-gift", color: "text-yellow-500" }
+  };
+  const config = typeConfig[notice.type] || typeConfig.service;
+
+  return `
+    <div class="notice-item p-3 bg-gray-50 rounded-xl flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors" onclick="viewNoticeDetail(${notice.id})">
+      <div class="flex items-center gap-3">
+        <i class="fa ${config.icon} ${config.color}"></i>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-700 truncate">${notice.title}</p>
+          <p class="text-xs text-gray-400 mt-1">${notice.time}</p>
+        </div>
+      </div>
+      <i class="fa fa-angle-right text-gray-300"></i>
+    </div>
+  `;
+}
+
+// 初始化公告列表
+function initNoticeList() {
+  const noticeList = document.getElementById('noticeList');
+  // 双列表拼接实现无缝滚动
+  let html = '';
+  noticeDataPool.forEach(notice => {
+    html += generateNoticeHtml(notice);
+  });
+  noticeList.innerHTML = html + html; // 重复列表实现无缝
+  // 获取单条公告高度
+  noticeHeight = document.querySelector('.notice-item')?.offsetHeight + 12 || 0;
+  // 启动滚动
+  startNoticeMarquee();
+}
+
+// 启动公告滚动
+function startNoticeMarquee() {
+  if (isNoticePaused) return;
+  if (noticeMarqueeTimer) cancelAnimationFrame(noticeMarqueeTimer);
+  
+  function scroll() {
+    if (!isNoticePaused) {
+      noticeScrollPosition += noticeScrollSpeed;
+      if (noticeScrollPosition >= noticeHeight * noticeDataPool.length) {
+        noticeScrollPosition = 0;
+      }
+      document.getElementById('noticeList').style.transform = `translateY(-${noticeScrollPosition}px)`;
+    }
+    noticeMarqueeTimer = requestAnimationFrame(scroll);
+  }
+  noticeMarqueeTimer = requestAnimationFrame(scroll);
+}
+
+// 暂停/恢复公告滚动
+function toggleNoticeMarquee() {
+  isNoticePaused = !isNoticePaused;
+  const btn = document.querySelector('[onclick="toggleNoticeMarquee()"]');
+  if (isNoticePaused) {
+    btn.innerHTML = '<i class="fa fa-play mr-1"></i> 播放';
+  } else {
+    btn.innerHTML = '<i class="fa fa-pause mr-1"></i> 暂停';
+    startNoticeMarquee();
+  }
+}
+
+// 查看公告详情（可扩展弹窗逻辑）
+function viewNoticeDetail(noticeId) {
+  const notice = noticeDataPool.find(item => item.id === noticeId);
+  if (notice) {
+    alert(`【${notice.title}】\n\n详情内容可在此处扩展，支持富文本、图片等格式`);
+    // 实际项目中可替换为弹窗展示详情
+  }
+}
+
+// 窗口大小变化时重新初始化
+window.addEventListener('resize', initNoticeList);
+// 页面加载完成后初始化
+window.addEventListener('load', initNoticeList);
+</script>
             <!-- 进群按钮（弹幕下方） -->
             <div class="mt-4 pt-3 border-t border-blue-100 flex justify-center relative z-10">
                 <a href="https://t.me/huafeiXL1" target="_blank" class="group flex items-center px-6 py-2.5 bg-gradient-to-r from-techPurple to-techCyan text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
