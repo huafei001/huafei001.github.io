@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>彦祖之家-防骗指南</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -13,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        techPurple: '#a855f7',
+                        techPurple: '#a855f7', // 修复原拼写错误 techPurple
                         techCyan: '#22d3ee',
                         techDark: '#1e293b',
                         techLight: '#f1f5f9'
@@ -23,6 +21,7 @@
         }
     </script>
     <style>
+        /* 原始风格修复 */
         .accordion-header {
             cursor: pointer;
             transition: all 0.3s ease;
@@ -60,7 +59,7 @@
             font-weight: 500;
         }
         .search-result-hidden {
-            display: none;
+            display: none !important; /* 增加优先级，确保隐藏生效 */
         }
         .back-btn {
             background: linear-gradient(to right, #1e293b, #a855f7);
@@ -69,6 +68,41 @@
         .back-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+        }
+        /* 底部tab栏 - 关键修复：提升层级+明确样式 */
+        .bottom-tab {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white !important; /* 强制白色背景，解决透明 */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 9999 !important; /* 提升层级，避免被内容遮挡 */
+            border-top: 1px solid #e5e7eb; /* 增加上边框，视觉更清晰 */
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #94a3b8;
+            text-decoration: none !important; /* 强制去除下划线 */
+            font-size: 11px;
+            gap: 3px;
+            padding: 5px 10px; /* 扩大点击区域 */
+        }
+        .tab-item.active {
+            color: #3b82f6;
+            font-weight: 500; /* 激活态加粗 */
+        }
+        .tab-icon {
+            font-size: 20px;
+        }
+        /* 页面主体底部留白，避免内容被Tab栏遮挡 */
+        body {
+            padding-bottom: 80px !important;
         }
     </style>
 </head>
@@ -82,12 +116,12 @@
                     <span class="text-white font-bold text-xl">彦祖之家· 防骗指南</span>
                 </div>
                 <!-- 搜索框 -->
-                <div class="w-full md:w-auto relative">
+                <div class="w-full md:w-80 relative">
                     <input 
                         type="text" 
                         id="searchInput" 
                         placeholder="输入关键词搜索防骗内容..." 
-                        class="w-full md:w-80 px-4 py-2 rounded-full bg-techDark/50 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-techCyan"
+                        class="w-full px-4 py-2 rounded-full bg-techDark/50 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-techCyan"
                     >
                     <i class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-300"></i>
                 </div>
@@ -96,6 +130,7 @@
                 </span>
             </div>
         </nav>
+
         <!-- 防骗指南主体内容 -->
         <section class="bg-white rounded-2xl shadow-md p-6 mb-8 card-hover relative overflow-hidden">
             <!-- 背景装饰 -->
@@ -120,12 +155,10 @@
                         </div>
                         <div class="accordion-content mt-3 text-gray-600 space-y-2 text-sm leading-relaxed">
                             <p>用本人手机号注册的飞机在加好友时建议关闭共享号码“Share My Phone Number”，添加联系人页面有个按钮默认打开，不想让对方看到你的号码切记关闭！已经加了的可以在隐私设置里删除例外进行隐藏！</p>
-                            <p>telegram官方不会主动发送风险/账号注销等提示，更没有中文通知，任何冒充官方账号给你发送的风险提示，切记不要点击链接，更不要发送验证码，官方不会找你索要验证码，验证码仅限于个人登录时使用，自行前往设置检查登录设备，发现非本人设备IP登录，及时删除并设置二代登录密码，如已经被盗过的账号将不在安全，建议注销重新注册一个，常用账号切记不要加入过多群组频道，不要点击任何链接不要相信任何陌生人私信，谨防盗号盗u。</p>
-                            <p>飞机上不是每个群主担保都可信，公群一定要注意识别，遇到不懂的群里多问，一定要在群里交流，私聊你的皆是骗子！拉假群骗押的比比皆是，如不能分辨可以在群里发问或找管理咨询！不支持走保的交易切记不要轻信！</p>
-                            <p>各类骗术万变不离其宗，文字是死的，人是活的，套路是会变的，要学会举一反三，在利益面前不要去试探人性！</p>
-                            <p>祝灰圈的兄弟们逢凶化吉，荣华富贵，顺利前行！</p>
+                            <p>telegram官方不会主动发送风险/账号注销等提示，更没有中文通知，任何冒充官方账号给你发送的风险提示，切记不要点击链接，更不要发送验证码，官方不会找你索要验证码，验证码仅限于个人登录时使用，自行前往设置检查登录设备，发现非本人设备IP登录，及时删除并设置二代登录密码，如已经被盗过的账号将不在安全，建议注销重新注册一个，常用账号切记不要加入过多群组频道，不要点击任何陌生人私信，谨防盗号盗u。</p>
                         </div>
                     </div>
+
                     <!-- 2. 亚马逊兼职骗局 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -149,6 +182,7 @@
                             <p>4、3-5天后，前往国家企业信息公示中心查询名下执照是否已注销。</p>
                         </div>
                     </div>
+
                     <!-- 3. 接码陷阱 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -165,6 +199,7 @@
                             <p>他这个东西其实就是靠信息差去骗小白，所以兄弟们别老是去想这种坐享其成不劳而获的事。尤其是那些一把梭哈缺钱抽烟的兄弟，网赌我劝不了你们，但是要时刻保持清醒，不然你将会被割的体无完肤！</p>
                         </div>
                     </div>
+
                     <!-- 4. 各类虚假项目骗局（一至六） -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -183,6 +218,7 @@
                             <p><strong class="text-techPurple">六：各类礼品卡、油卡、购物卡、E卡核销均为骗局</strong>，骗子以极低折扣诱你上钩，直接骗先款或拉假群骗押，等你上押之后，骗子在卡密发出来两三秒内抢绑，这时候你去核销会提示被绑定，而骗子则说你恶意黑卡申请仲裁，仲裁通常都会以难以判断为由判双方各种承担一半！低于市场价的皆为骗子，不要轻易相信！</p>
                         </div>
                     </div>
+
                     <!-- 5. 各类虚假项目骗局（七至十） -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -201,6 +237,7 @@
                             <p>项目真伪大家自行判断！ 我只做揭秘</p>
                         </div>
                     </div>
+
                     <!-- 6. 背包客一趟几万是真的吗？ -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -220,6 +257,7 @@
                             <p><strong class="text-techPurple">总结</strong>：凡是关于需要出国的项目皆不可信，这些被各种高薪招聘诱骗至缅北的人，大部分会被送到电诈团伙中，然后再根据每个人的能力进行所谓岗位分配：有用的被留下来从事电信网络诈骗活动，没用的会被包装后转卖到其他的电诈窝点。在这期间，他们不仅赚不到钱，还会被逼签下一张张欠条，负债累累。</p>
                         </div>
                     </div>
+
                     <!-- 7. 背债靠不靠谱？ -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -238,6 +276,7 @@
                             <p>值得注意的是，“免还协议”这类声称可以免除还款责任的协议在法律上通常是无效的，因此参与此类活动的人最终还是需要承担还款责任的。</p>
                         </div>
                     </div>
+
                     <!-- 8. 黑U搬砖/黑U承兑 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -256,6 +295,7 @@
                             <p>其实这个套路和充值卡、网赌杀猪盘一样，没什么好说的，就是给小白打一个预防针。</p>
                         </div>
                     </div>
+
                     <!-- 9. 汽车拍照骗局 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -272,6 +312,7 @@
                             <p>我自己肯定是不会去尝试，但我既然揭秘了基本都是骗子，有头铁的大可一试，钱要这么容易挣，骗子何必不辞辛劳日夜蹲守各大群里发广告招小白！</p>
                         </div>
                     </div>
+
                     <!-- 10. 闲鱼/淘宝（店铺）账号租借内幕 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -291,6 +332,7 @@
                             <p>此外，淘宝店铺还有“淘宝借贷”、“网商贷”等产品，一不小心可能就借上网贷。</p>
                         </div>
                     </div>
+
                     <!-- 11. 针孔摄像头安装/打火机投放骗局 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -308,6 +350,7 @@
                             <p>此外同类型套路投放二维码打火机，投放一个5元日赚2000，套路与针孔摄像头安装是一样的，也是拉假担保骗取押金，或让你淘宝购买，这个更假，既是二维码打火机，淘宝能买到带他们后台的打火机吗？要学会举一反三，这里就不一一陈述了。</p>
                         </div>
                     </div>
+
                     <!-- 12. 揭秘无押跑分骗局 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -322,11 +365,12 @@
                             <p><strong class="text-techPurple">一、钱包授权套路</strong>：骗子首先会告诉你为了安全必须使用U钱包，骗子首先会让你去下载好钱包，然后在交易所买好U转到钱包中，这个时候，骗子会把一个链接或者一个二维码发给你，让你用钱包打开，如果确认点击你的钱包就会被授权，骗子就可以随时随地的划走你的U。</p>
                             <p>这个时候，骗子会先给你打钱，就算你不回U给骗子，对于骗子来讲他们也不会有损失，因为在这之前你的钱包早已经被骗子给授权了。骗子给你打钱过来并且正常回U，一次一次的循环下去，这个时候你就会感觉项目很靠谱，并且加大资金去跑分，到了这个时候，骗子就不会给你打款过来了，并且你钱包里的U都会被骗子划走。</p>
                             <p><strong class="text-techPurple">二、支付宝微信收款码套路</strong>：你提供码给你30的点位，收1000元，回他700就行，而他说的码就是支付宝微信收款码，点位代表的是你的利润，你再问他做完收款码会不会限制，他也说不会。不过这句话确实是真的，因为他这个就没想着做，你要是狠下心开始干，为了摸清你的余额底细，他会找你要账单截图，看完他就会说账号没问题，可以做。</p>
-                            <p>接着就是他复制的一些小话术，为了防止大家白忙活，做单之前要刷一遍流水，理由就是防止风控，而操作则是自己用两个号转账一笔500-1000的流水，并要你通过QQ或腾讯会议共享屏幕，同时还必须要跟他视频通话，而对方在你们视频的过程中，提前进行了扫码，在你一不留神的时候，对方就来个猴子偷桃，偷偷领掉这500。</p>
+                            <p>接着就是他复制的一些小话术，为了防止风控，而操作则是自己用两个号转账一笔500-1000的流水，并要你通过QQ或腾讯会议共享屏幕，同时还必须要跟他视频通话，而对方在你们视频通话的过程中，偷偷领掉这500。</p>
                             <p><strong class="text-techPurple">三、证件人脸视频套路</strong>：通过单笔2000-10000无押空放吸引你，并要求你提供身份证正反面、拍摄一条6-8秒人脸录制视频（需要包含常规人脸识别动作），他们通常会说担心你不回款，需提供证件人脸视频作为保证！最终目的都是为了骗钱，且你的资料很可能被骗子利用！买卖身份证照片人脸的不少，想想其目的为何。</p>
                             <p>支付宝微信免押代收代付都是骗子，看见绕道就行了，跑分尽量走正规担保上押或同台交易。</p>
                         </div>
                     </div>
+
                     <!-- 13. 下浮u、先款、现金收u套路 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -337,8 +381,8 @@
                             <i class="fa fa-chevron-down accordion-arrow"></i>
                         </div>
                         <div class="accordion-content mt-3 text-gray-600 space-y-2 text-sm leading-relaxed">
-                            <p><strong class="text-techPurple">下浮u、先款、现金收u套路</strong>：</p>
-                            <p>1.转钱或者转u，不回款或者回u。</p>
+                            <p><strong class="text-techPurple">下浮u、先u的套路</strong>：</p>
+                            <p>1.找个假平台骗你充u，充进去就提不出来了。</p>
                             <p>2.找担保，担保双方收钱然后没影了。</p>
                             <p>3.担保和骗子一伙的。</p>
                             <p><strong class="text-techPurple">线下先款套路</strong>：</p>
@@ -351,11 +395,12 @@
                             <p>3.客户给你摆很多现金，你给他转u以后，那边直接把现金收起来，你第一没法抢第二没法报警。</p>
                             <p>反正综合就这些常见的。当然还有别的经常遇到的和骗术太繁琐的我就不一一列举了，先款先u都有骗子，上浮下浮都有骗子，单笔要求大额的也有真的，单笔走小额的也有骗子，摆现更不实在不靠谱。</p>
                             <p>这行业，真假难辨，买方卖方的骗术都是层出不穷，想当初最早出现假钱包时候都是真正的币商为了不被买方黑，但是渐渐的被一些骗子用了。</p>
-                            <p>摆现也是，最开始是买家为了自己安全用的，但是现在被一些骗子专门搞币商用了。现在行情，想挣钱就得砸钱找真客户真老板。没钱劝你们早点离开这行业。除非你运气好，一下就能找到真的。</p>
+                            <p>摆现也是，最开始是买家为了防止卖家黑U，后来慢慢的变成了骗子的一种手段，摆着几万现金，骗你转U，你转完U，人家拿着钱就跑了，你根本追不上。没钱劝你们早点离开这行业。除非你运气好，一下就能找到真的。</p>
                             <p>现在还有两个骗术，就是线上交易，币方给先u，打来的不是usdt而是ustd。</p>
                             <p>还有就是和币方谈好同台了，然后币方要求你给他转账买票，千万别信，转了就没人了，你过去找他也找不到，要么币方买票你过去，要么买方买票币方过去。别私下转账。</p>
                         </div>
                     </div>
+
                     <!-- 14. 盗币秒USDT背后玩法逻辑揭秘 -->
                     <div class="border-b border-gray-100 pb-4 accordion-item">
                         <div class="accordion-header flex justify-between items-center">
@@ -390,28 +435,28 @@
             </div>
         </section>
 
-        <!-- 跳转指定网址的返回按钮 -->
-        <div class="text-center mb-8">
-            <button id="backBtn" class="back-btn text-white px-8 py-3 rounded-full font-medium flex items-center justify-center mx-auto gap-2">
-                <i class="fa fa-arrow-left"></i>
-                <span>返回上一界面</span>
-            </button>
+        <!-- 底部tab栏 -->
+        <div class="bottom-tab">
+            <a href="index.html" class="tab-item">
+                <i class="fa fa-home tab-icon"></i>
+                <span class="tab-text">生活缴费</span>
+            </a>
+            <a href="anti-fraud.html" class="tab-item active">
+                <i class="fa fa-shield tab-icon"></i>
+                <span class="tab-text">防骗指南</span>
+            </a>
+            <a href="downloads.html" class="tab-item">
+                <i class="fa fa-download tab-icon"></i>
+                <span class="tab-text">软件下载</span>
+            </a>
+            <a href="home.html" class="tab-item">
+                <i class="fa fa-user tab-icon"></i>
+                <span class="tab-text">彦祖之家</span>
+            </a>
         </div>
-
-
-<!-- 强制移动端视图核心：固定视口宽度+禁用缩放 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<!-- 可选：强制页面最大宽度为移动端常用尺寸 -->
-<style>body{max-width:750px;margin:0 auto;}</style>
-
-        
-        <!-- 底部信息 -->
-        <footer class="text-center text-gray-500 text-sm py-4">
-            <p>© 2025 <span class="text-techPurple font-medium">彦祖之家</span> 防骗指南 | 严禁用于非法用途</p>
-        </footer>
     </div>
-    <!-- 折叠展开 + 搜索功能 + 跳转按钮 JS逻辑 -->
+
+    <!-- 折叠展开 + 搜索功能 JS逻辑 -->
     <script>
         // 折叠展开功能
         document.querySelectorAll('.accordion-header').forEach(header => {
@@ -422,6 +467,7 @@
                 arrow.classList.toggle('active');
             });
         });
+
         // 搜索功能
         const searchInput = document.getElementById('searchInput');
         const accordionItems = document.querySelectorAll('.accordion-item');
@@ -452,12 +498,6 @@
                     }
                 });
             });
-        });
-        // 跳转指定网址的按钮功能
-        document.getElementById('backBtn').addEventListener('click', function() {
-            // 替换成你需要跳转的目标网址
-            const targetUrl='https://huafei001.github.io'; 
-            window.location.href = targetUrl;
         });
     </script>
 </body>
