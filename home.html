@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -44,10 +42,6 @@
             .tab-text {
                 @apply text-xs;
             }
-            /* 汇率置顶固定样式 - 仅主页用 */
-            .fixed-rate {
-                @apply fixed top-0 left-0 right-0 bg-white z-40 shadow-sm border-b border-gray-100 p-3;
-            }
             /* 机场方块卡片 */
             .airport-card {
                 @apply bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center h-full;
@@ -55,12 +49,12 @@
         }
     </style>
     <style>
-        /* 全局样式 - 主页留出汇率栏空间，其他页面无 */
+        /* 全局样式 */
         body.home-page {
             max-width: 750px;
             margin: 0 auto;
             background-color: #f9fafb;
-            padding: 7rem 10px 4rem 10px;
+            padding: 2rem 10px 4rem 10px;
             font-family: 'PingFang SC', sans-serif;
         }
         body.other-page {
@@ -71,520 +65,292 @@
             font-family: 'PingFang SC', sans-serif;
         }
 
-        /* USDT价格卡片样式 */
-        .usdt-price-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-            border-radius: 16px;
-            border: 1px solid #e1f5fe;
-            padding: 15px 12px;
-            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.08);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        .price-icon {
-            font-size: 20px;
-            color: #0ea5e9;
-            background: linear-gradient(145deg, rgba(14, 165, 233, 0.1), rgba(56, 189, 248, 0.05));
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .price-content {
-            flex: 1;
-        }
-        .price-label {
-            font-size: 12px;
-            color: #64748b;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .price-label i {
-            font-size: 10px;
-            color: #0ea5e9;
-            animation: rotate 2s linear infinite;
-        }
-        .price-value {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0f172a;
-            letter-spacing: 0.5px;
-            line-height: 1;
-            position: relative;
-        }
-        .price-value:not(.loading):not(.error)::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
+        /* 订单查询结果表格样式 */
+        .result-table {
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #0ea5e9, transparent);
-            opacity: 0.5;
-        }
-        .loading {
-            color: #0ea5e9;
-            font-size: 18px;
-            font-weight: 500;
-            position: relative;
-        }
-        .loading::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: -10px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #0ea5e9;
-            transform: translateY(-50%);
-            animation: blink 1.5s infinite;
-        }
-        .error {
-            color: #ef4444;
-            font-size: 18px;
-            font-weight: 500;
-        }
-        .update-time {
-            font-size: 10px;
-            color: #94a3b8;
-            margin-top: 6px;
-            padding-top: 6px;
-            border-top: 1px solid rgba(14, 165, 233, 0.1);
-        }
-        @keyframes blink {
-            0%,100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* 轮播图样式 */
-        .testimonial-slider {
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            position: relative;
-            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .testimonial-wrapper {
-            display: flex;
-            transition: transform 0.5s ease;
+        .result-table th {
+            background: linear-gradient(90deg, #f7fafc, #edf2f7);
+            color: #2d3748;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 12px;
+            border-bottom: 2px solid #e2e8f0;
         }
-        .testimonial-item {
-            flex: 0 0 100%;
-            padding: 0 10px;
+        .result-table td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #f0f4f8;
+            font-size: 13px;
         }
-        @media (min-width: 768px) {
-            .testimonial-item {
-                flex: 0 0 33.333%;
-            }
+        .status-completed { color: #38a169; font-weight: 600; }
+        .status-pending { color: #ed8936; font-weight: 600; }
+        .no-data {
+            padding: 25px;
+            color: #718096;
+            font-size: 13px;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body class="home-page">
 
-
-
-<!-- 实时订单动态板块 -->
+<!-- 彦祖之家订单查询板块 -->
 <div class="bg-white rounded-2xl shadow-lg p-5 mb-6 border border-gray-100 overflow-hidden relative">
   <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-    <i class="fa fa-refresh text-techCyan animate-spin" style="animation-duration: 2s;"></i> 实时订单动态
+    <i class="fa fa-search text-techCyan"></i> 彦祖之家订单查询
   </h3>
-  <!-- 订单滚动容器 - 固定高度，隐藏溢出 -->
-  <div class="order-scroll-container h-[180px] overflow-hidden" id="orderScrollContainer">
-    <!-- 双列表容器：实现无缝滚动 -->
-    <div class="order-wrap" id="orderWrap">
-      <div class="order-list space-y-3" id="orderList1"></div>
-      <div class="order-list space-y-3" id="orderList2"></div>
+
+  <!-- 搜索表单 -->
+  <div class="search-box mb-4">
+    <form id="orderSearchForm" class="flex gap-2">
+      <input type="text" name="account" placeholder="请输入手机号/户号" required
+             class="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition-colors">
+      <button type="submit"
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-1">
+        <i class="fa fa-search"></i> 查询
+      </button>
+    </form>
+  </div>
+
+  <!-- 搜索提示/结果 -->
+  <div id="searchResult" class="mt-2">
+    <div class="text-center text-gray-500 text-sm py-4">
+      输入手机号或户号，查询您的充值订单
     </div>
   </div>
-  <!-- 上下渐变遮罩，优化视觉过渡 -->
-  <div class="absolute top-16 left-0 right-0 h-8 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-  <div class="absolute bottom-5 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 </div>
 
-<!-- 订单无缝滚动JS -->
+<!-- 模拟订单数据JS -->
 <script>
-// 订单数据池 - 新增10个水费订单
-const orderDataPool = [
-  // 原有订单
-  { orderNo: '2026***06', type: '燃气', amount: 1000, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  { orderNo: '2026***89', type: '燃气', amount: 2000, status: '等待充值', statusColor: 'bg-yellow-100 text-yellow-600' },
-  { orderNo: '2026***32', type: '电费', amount: 500, status: '已提单', statusColor: 'bg-blue-100 text-blue-600' },
-  { orderNo: '2026***57', type: '话费', amount: 300, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  { orderNo: '2026***11', type: '燃气', amount: 1500, status: '等待充值', statusColor: 'bg-yellow-100 text-yellow-600' },
-  { orderNo: '2026***95', type: '电费', amount: 800, status: '已提单', statusColor: 'bg-blue-100 text-blue-600' },
-  { orderNo: '2026***73', type: '话费', amount: 100, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  // 新增10个水费订单
-  { orderNo: '2026***22', type: '水费', amount: 200, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  { orderNo: '2026***24', type: '水费', amount: 300, status: '等待充值', statusColor: 'bg-yellow-100 text-yellow-600' },
-  { orderNo: '2026***26', type: '水费', amount: 150, status: '已提单', statusColor: 'bg-blue-100 text-blue-600' },
-  { orderNo: '2026***28', type: '水费', amount: 400, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  { orderNo: '2026***30', type: '水费', amount: 250, status: '等待充值', statusColor: 'bg-yellow-100 text-yellow-600' },
-  { orderNo: '2026***33', type: '水费', amount: 350, status: '已提单', statusColor: 'bg-blue-100 text-blue-600' },
-  { orderNo: '2026***35', type: '水费', amount: 500, status: '已到账', statusColor: 'bg-green-100 text-green-600' },
-  { orderNo: '2026***37', type: '水费', amount: 180, status: '等待充值', statusColor: 'bg-yellow-100 text-yellow-600' },
-  { orderNo: '2026***39', type: '水费', amount: 220, status: '已提单', statusColor: 'bg-blue-100 text-blue-600' },
-  { orderNo: '2026***41', type: '水费', amount: 380, status: '已到账', statusColor: 'bg-green-100 text-green-600' }
+// 模拟订单数据库（可替换为真实接口请求）
+const mockOrderDB = [
+  { id: 1, orderNo: '2026***06', account: '13800138000', type: '燃气', total_amount: 1000, paid_amount: 1000, status: 'completed', date: '2026-01-20 10:30:00' },
+  { id: 2, orderNo: '2026***22', account: '13900139000', type: '水费', total_amount: 200, paid_amount: 200, status: 'completed', date: '2026-01-20 11:15:00' },
+  { id: 3, orderNo: '2026***33', account: '13800138000', type: '水费', total_amount: 350, paid_amount: 0, status: 'pending', date: '2026-01-20 14:20:00' },
+  { id: 4, orderNo: '2026***57', account: '13700137000', type: '话费', total_amount: 300, paid_amount: 300, status: 'completed', date: '2026-01-19 16:40:00' },
+  { id: 5, orderNo: '2026***95', account: '13600136000', type: '电费', total_amount: 800, paid_amount: 400, status: 'pending', date: '2026-01-19 09:10:00' }
 ];
 
-const orderWrap = document.getElementById('orderWrap');
-const orderList1 = document.getElementById('orderList1');
-const orderList2 = document.getElementById('orderList2');
-let scrollSpeed = 0.8; // 滚动速度（越小越慢，更流畅）
-let scrollPosition = 0;
-let orderHeight = 0; // 单条订单高度
+// 手机号/户号模糊化函数
+function blurAccount(account) {
+  const len = account.length;
+  if (len <= 4) return account.substr(0, 1) + '*'.repeat(len - 1);
+  if (len <= 8) return account.substr(0, 2) + '*'.repeat(len - 3) + account.substr(-1);
+  return account.substr(0, 3) + '*'.repeat(6) + account.substr(-2);
+}
 
-// 生成订单HTML
-function generateOrderHtml(list) {
-  let html = '';
-  list.forEach(order => {
-    html += `
-      <div class="order-item p-3 bg-gray-50 rounded-xl flex justify-between items-center">
-        <div class="flex items-center">
-          <span class="text-sm font-medium text-gray-700">${order.orderNo}</span>
-          <span class="mx-2 text-xs text-gray-400">|</span>
-          <span class="text-xs text-gray-500">${order.type} ${order.amount}</span>
-        </div>
-        <span class="text-xs px-2 py-1 rounded-full ${order.statusColor}">${order.status}</span>
+// 搜索表单提交事件
+document.getElementById('orderSearchForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const account = this.account.value.trim();
+  const resultEl = document.getElementById('searchResult');
+
+  // 筛选匹配的订单
+  const matchedOrders = mockOrderDB.filter(order => order.account.includes(account));
+
+  if (matchedOrders.length === 0) {
+    resultEl.innerHTML = `
+      <div class="no-data">
+        未查询到 <span class="text-primary font-medium">${blurAccount(account)}</span> 的订单记录
       </div>
     `;
-  });
-  return html;
-}
-
-// 随机打乱订单
-function shuffleOrders() {
-  return [...orderDataPool].sort(() => Math.random() - 0.5);
-}
-
-// 初始化双列表
-function initOrders() {
-  const shuffled = shuffleOrders();
-  orderList1.innerHTML = generateOrderHtml(shuffled);
-  orderList2.innerHTML = generateOrderHtml(shuffled); // 列表2和列表1内容相同，实现无缝
-  // 获取单条订单高度（用于计算滚动重置位置）
-  orderHeight = document.querySelector('.order-item').offsetHeight + 12; // 12是space-y-3的间距
-}
-
-// 无缝滚动核心函数
-function scrollOrders() {
-  scrollPosition += scrollSpeed;
-  // 当滚动距离等于单条订单高度时，重置位置，实现无感知衔接
-  if (scrollPosition >= orderHeight) {
-    scrollPosition = 0;
-    // 异步更新列表数据，避免卡顿
-    setTimeout(() => {
-      const shuffled = shuffleOrders();
-      orderList1.innerHTML = generateOrderHtml(shuffled);
-      orderList2.innerHTML = generateOrderHtml(shuffled);
-    }, 0);
+    return;
   }
-  // 使用transform实现硬件加速，减少卡顿
-  orderWrap.style.transform = `translateY(-${scrollPosition}px)`;
-  orderWrap.style.transition = 'transform 0s linear'; // 取消过渡动画，避免卡顿
-  requestAnimationFrame(scrollOrders);
-}
 
-// 页面加载完成后初始化
-window.addEventListener('load', () => {
-  initOrders();
-  scrollOrders();
+  // 生成结果表格
+  let tableHtml = `
+    <table class="result-table">
+      <tr>
+        <th>订单编号</th>
+        <th>业务类型</th>
+        <th>总金额</th>
+        <th>已充金额</th>
+        <th>订单状态</th>
+        <th>下单时间</th>
+      </tr>
+  `;
+
+  matchedOrders.forEach(order => {
+    const statusText = order.status === 'completed' ? '✅ 已完成' : '⏳ 未完成';
+    const statusClass = order.status === 'completed' ? 'status-completed' : 'status-pending';
+    tableHtml += `
+      <tr>
+        <td>${order.orderNo}</td>
+        <td>${order.type}</td>
+        <td>¥${order.total_amount}</td>
+        <td>¥${order.paid_amount}</td>
+        <td class="${statusClass}">${statusText}</td>
+        <td>${order.date}</td>
+      </tr>
+    `;
+  });
+
+  tableHtml += `</table>`;
+  resultEl.innerHTML = tableHtml;
 });
-
-// 窗口大小变化时重新初始化（适配响应式）
-window.addEventListener('resize', initOrders);
 </script>
 
-    
-    <!-- USDT汇率置顶 - 仅主页显示 -->
-    <div class="fixed-rate">
-        <div class="usdt-price-card">
-            <div class="price-icon">
-                <i class="fa fa-money-bill-wave"></i>
-            </div>
-            <div class="price-content">
-                <div class="price-label">
-                    <i class="fa fa-refresh"></i>
-                    彦祖之家 · USDT/CNY 汇率
+<!-- 彦祖之家主页面内容 -->
+<div id="home-content">
+    <!-- 机场工具推荐 - 方块布局 -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 mb-6 overflow-hidden relative transition-all duration-300 hover:shadow-xl">
+        <div class="absolute top-0 left-0 w-24 h-24 bg-techPurple/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-16 h-16 bg-techCyan/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+        
+        <div class="relative z-10 mb-4">
+            <h2 class="text-lg font-bold text-gray-800 text-center">
+                <i class="fa fa-plane text-techPurple mr-2"></i> 机场工具推荐
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+            <!-- 良心云 -->
+            <div class="airport-card">
+                <div class="w-12 h-12 rounded-full bg-[#4ECDC4]/10 flex items-center justify-center mb-2">
+                    <i class="fa fa-cloud text-[#4ECDC4] text-xl"></i>
                 </div>
-                <div id="usdt-cny-price" class="price-value loading">加载中</div>
-                <div id="price-update-time" class="update-time"></div>
+                <h3 class="font-semibold text-sm mb-1">良心云</h3>
+                <p class="text-xs text-gray-500 mb-2">24元/年起</p>
+                <a href="https://xn--9kqz23b19z.com/#/register?code=0mor88Nr" target="_blank" class="text-xs bg-[#4ECDC4] text-white px-3 py-1 rounded-full">
+                    注册码 0mor88Nr
+                </a>
             </div>
+
+            <!-- 一元机场 -->
+            <div class="airport-card">
+                <div class="w-12 h-12 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center mb-2">
+                    <i class="fa fa-rocket text-[#FF6B6B] text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-sm mb-1">一元机场</h3>
+                <p class="text-xs text-gray-500 mb-2">高性价比入门</p>
+                <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="text-xs bg-[#FF6B6B] text-white px-3 py-1 rounded-full">
+                    注册码 CLONhlZF
+                </a>
+            </div>
+
+            <!-- 宝可梦机场 -->
+            <div class="airport-card">
+                <div class="w-12 h-12 rounded-full bg-[#4ECDC4]/10 flex items-center justify-center mb-2">
+                    <i class="fa fa-paw text-[#4ECDC4] text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-sm mb-1">宝可梦机场</h3>
+                <p class="text-xs text-gray-500 mb-2">月享60G免费流量</p>
+                <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="text-xs bg-[#4ECDC4] text-white px-3 py-1 rounded-full">
+                    注册码 X07zWTLv
+                </a>
+            </div>
+
+            <!-- 24一年机场 -->
+            <div class="airport-card">
+                <div class="w-12 h-12 rounded-full bg-[#FFD166]/10 flex items-center justify-center mb-2">
+                    <i class="fa fa-diamond text-[#FFD166] text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-sm mb-1">24一年机场</h3>
+                <p class="text-xs text-gray-500 mb-2">年度特惠不限速</p>
+                <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="text-xs bg-[#FFD166] text-white px-3 py-1 rounded-full">
+                    注册码 HqZaxd0y
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-3 p-2 bg-gray-50 rounded-lg text-center">
+            <p class="text-xs text-gray-500">
+                <i class="fa fa-lightbulb-o text-techPurple mr-1"></i>
+                仅限个人学习交流，请勿非法使用
+            </p>
         </div>
     </div>
 
-    <!-- 彦祖之家主页面内容 -->
-    <div id="home-content">
-        <!-- 机场工具推荐 - 方块布局 -->
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 mb-6 overflow-hidden relative transition-all duration-300 hover:shadow-xl">
-            <div class="absolute top-0 left-0 w-24 h-24 bg-techPurple/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-16 h-16 bg-techCyan/5 rounded-full translate-x-1/4 translate-y-1/4"></div>
+    <!-- 网站运行统计 -->
+    <div class="max-w-320 mx-auto p-4 bg-white rounded-2xl shadow-md border border-gray-100 relative overflow-hidden mt-6">
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-techCyan"></div>
+        <div class="text-center mb-3">
+            <i class="fa fa-server text-xl text-primary mb-1"></i>
+            <h3 class="font-semibold text-sm text-gray-800">网站运行统计</h3>
+        </div>
+        <div class="flex justify-around items-center">
+            <div class="text-center">
+                <div class="text-xl font-bold text-primary" id="totalVisitors">0</div>
+                <div class="text-xs text-gray-500 mt-1">总访问量</div>
+            </div>
+            <div class="w-px h-8 bg-gray-200"></div>
+            <div class="text-center">
+                <div class="text-xl font-bold text-primary" id="runTime">0</div>
+                <div class="text-xs text-gray-500 mt-1">运行天数</div>
+            </div>
+        </div>
+        <div class="text-xs text-gray-400 text-center mt-3" id="updateTime"></div>
+    </div>
+</div>
+
+<!-- 底部 Tab 栏 - 跳转独立页面 -->
+<div class="bottom-tab">
+    <a href="index.html" class="tab-item">
+        <i class="fa fa-home tab-icon"></i>
+        <span class="tab-text">生活充值</span>
+    </a>
+    <a href="anti-fraud.html" class="tab-item">
+        <i class="fa fa-shield tab-icon"></i>
+        <span class="tab-text">防骗公布</span>
+    </a>
+    <a href="downloads.html" class="tab-item">
+        <i class="fa fa-download tab-icon"></i>
+        <span class="tab-text">软件下载</span>
+    </a>
+    <a href="home.html" class="tab-item active">
+        <i class="fa fa-user tab-icon"></i>
+        <span class="tab-text">彦祖之家</span>
+    </a>
+</div>
+
+<script>
+    // 网站统计脚本
+    function initCounter() {
+        const LAUNCH_DATE = new Date(2025, 11, 1); 
+        let total = parseInt(localStorage.getItem('totalVisitors')) || 8699;
+        const today = new Date();
+        const timeDiff = today - LAUNCH_DATE;
+        const runDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        total += 1;
+
+        function animateNumber(target, element) {
+            let current = parseInt(element.textContent) || 0;
+            const duration = 1000;
+            const start = performance.now();
+            let animationFrame;
             
-            <div class="relative z-10 mb-4">
-                <h2 class="text-lg font-bold text-gray-800 text-center">
-                    <i class="fa fa-plane text-techPurple mr-2"></i> 机场工具推荐
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <!-- 良心云 -->
-                <div class="airport-card">
-                    <div class="w-12 h-12 rounded-full bg-[#4ECDC4]/10 flex items-center justify-center mb-2">
-                        <i class="fa fa-cloud text-[#4ECDC4] text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm mb-1">良心云</h3>
-                    <p class="text-xs text-gray-500 mb-2">24元/年起</p>
-                    <a href="https://xn--9kqz23b19z.com/#/register?code=0mor88Nr" target="_blank" class="text-xs bg-[#4ECDC4] text-white px-3 py-1 rounded-full">
-                        注册码 0mor88Nr
-                    </a>
-                </div>
-
-                <!-- 一元机场 -->
-                <div class="airport-card">
-                    <div class="w-12 h-12 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center mb-2">
-                        <i class="fa fa-rocket text-[#FF6B6B] text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm mb-1">一元机场</h3>
-                    <p class="text-xs text-gray-500 mb-2">高性价比入门</p>
-                    <a href="https://xn--4gq62f.com/#/register?code=CLONhlZF" target="_blank" class="text-xs bg-[#FF6B6B] text-white px-3 py-1 rounded-full">
-                        注册码 CLONhlZF
-                    </a>
-                </div>
-
-                <!-- 宝可梦机场 -->
-                <div class="airport-card">
-                    <div class="w-12 h-12 rounded-full bg-[#4ECDC4]/10 flex items-center justify-center mb-2">
-                        <i class="fa fa-paw text-[#4ECDC4] text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm mb-1">宝可梦机场</h3>
-                    <p class="text-xs text-gray-500 mb-2">月享60G免费流量</p>
-                    <a href="https://love.p6m6.com/#/register?code=X07zWTLv" target="_blank" class="text-xs bg-[#4ECDC4] text-white px-3 py-1 rounded-full">
-                        注册码 X07zWTLv
-                    </a>
-                </div>
-
-                <!-- 24一年机场 -->
-                <div class="airport-card">
-                    <div class="w-12 h-12 rounded-full bg-[#FFD166]/10 flex items-center justify-center mb-2">
-                        <i class="fa fa-diamond text-[#FFD166] text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm mb-1">24一年机场</h3>
-                    <p class="text-xs text-gray-500 mb-2">年度特惠不限速</p>
-                    <a href="https://kitty.su/#/register?code=HqZaxd0y" target="_blank" class="text-xs bg-[#FFD166] text-white px-3 py-1 rounded-full">
-                        注册码 HqZaxd0y
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-3 p-2 bg-gray-50 rounded-lg text-center">
-                <p class="text-xs text-gray-500">
-                    <i class="fa fa-lightbulb-o text-techPurple mr-1"></i>
-                    仅限个人学习交流，请勿非法使用
-                </p>
-            </div>
-        </div>
-
-        <!-- 用户评价轮播 -->
-        <div class="testimonial-slider" id="testimonialSlider">
-            <div class="testimonial-wrapper" id="testimonialWrapper">
-                <div class="testimonial-item">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="text-gray-600 text-sm">良心云真的很稳定，用了半年没掉过线！</p>
-                        <p class="text-right text-xs text-gray-400 mt-2">—— 来自用户 A</p>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="text-gray-600 text-sm">USDT汇率工具太实用了，再也不用到处查了。</p>
-                        <p class="text-right text-xs text-gray-400 mt-2">—— 来自用户 B</p>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="text-gray-600 text-sm">宝可梦机场的免费流量够用了，轻度使用完全没问题。</p>
-                        <p class="text-right text-xs text-gray-400 mt-2">—— 来自用户 C</p>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="text-gray-600 text-sm">24元一年的机场性价比超高，推荐给朋友了！</p>
-                        <p class="text-right text-xs text-gray-400 mt-2">—— 来自用户 D</p>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <p class="text-gray-600 text-sm">网站界面很清爽，功能也很实用，点赞！</p>
-                        <p class="text-right text-xs text-gray-400 mt-2">—— 来自用户 E</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center gap-2 mt-4">
-                <span class="w-2 h-2 rounded-full bg-primary cursor-pointer testimonial-indicator active" data-index="0"></span>
-                <span class="w-2 h-2 rounded-full bg-primary/30 cursor-pointer testimonial-indicator" data-index="1"></span>
-                <span class="w-2 h-2 rounded-full bg-primary/30 cursor-pointer testimonial-indicator" data-index="2"></span>
-                <span class="w-2 h-2 rounded-full bg-primary/30 cursor-pointer testimonial-indicator" data-index="3"></span>
-                <span class="w-2 h-2 rounded-full bg-primary/30 cursor-pointer testimonial-indicator" data-index="4"></span>
-            </div>
-        </div>
-
-        <!-- 网站运行统计 -->
-        <div class="max-w-320 mx-auto p-4 bg-white rounded-2xl shadow-md border border-gray-100 relative overflow-hidden mt-6">
-            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-techCyan"></div>
-            <div class="text-center mb-3">
-                <i class="fa fa-server text-xl text-primary mb-1"></i>
-                <h3 class="font-semibold text-sm text-gray-800">网站运行统计</h3>
-            </div>
-            <div class="flex justify-around items-center">
-                <div class="text-center">
-                    <div class="text-xl font-bold text-primary" id="totalVisitors">0</div>
-                    <div class="text-xs text-gray-500 mt-1">总访问量</div>
-                </div>
-                <div class="w-px h-8 bg-gray-200"></div>
-                <div class="text-center">
-                    <div class="text-xl font-bold text-primary" id="runTime">0</div>
-                    <div class="text-xs text-gray-500 mt-1">运行天数</div>
-                </div>
-            </div>
-            <div class="text-xs text-gray-400 text-center mt-3" id="updateTime"></div>
-        </div>
-    </div>
-
-    <!-- 底部 Tab 栏 - 跳转独立页面 -->
-    <div class="bottom-tab">
-        <a href="index.html" class="tab-item">
-            <i class="fa fa-home tab-icon"></i>
-            <span class="tab-text">生活充值</span>
-        </a>
-        <a href="anti-fraud.html" class="tab-item">
-            <i class="fa fa-shield tab-icon"></i>
-            <span class="tab-text">防骗公布</span>
-        </a>
-        <a href="downloads.html" class="tab-item">
-            <i class="fa fa-download tab-icon"></i>
-            <span class="tab-text">软件下载</span>
-        </a>
-        <a href="home.html" class="tab-item active">
-            <i class="fa fa-user tab-icon"></i>
-            <span class="tab-text">彦祖之家</span>
-        </a>
-    </div>
-
-    <script>
-        // USDT汇率获取脚本
-        const priceElement = document.getElementById('usdt-cny-price');
-        const timeElement = document.getElementById('price-update-time');
-
-        function fetchUsdtCnyPrice() {
-            const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=cny';
-            
-            priceElement.className = 'price-value loading';
-            priceElement.textContent = '加载中';
-
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('数据请求失败');
-                    return response.json();
-                })
-                .then(data => {
-                    const usdtCny = data.tether.cny;
-                    priceElement.className = 'price-value';
-                    priceElement.textContent = `¥ ${usdtCny.toFixed(4)}`;
-                    
-                    const now = new Date();
-                    timeElement.textContent = `最后更新：${now.toLocaleString('zh-CN')}`;
-                })
-                .catch(error => {
-                    priceElement.className = 'price-value error';
-                    priceElement.textContent = '获取失败';
-                    timeElement.textContent = '请刷新页面重试';
-                });
-        }
-
-        fetchUsdtCnyPrice();
-        setInterval(fetchUsdtCnyPrice, 10000);
-
-        // 网站统计脚本
-        function initCounter() {
-            const LAUNCH_DATE = new Date(2025, 11, 1); 
-            let total = parseInt(localStorage.getItem('totalVisitors')) || 8699;
-            const today = new Date();
-            const timeDiff = today - LAUNCH_DATE;
-            const runDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-            total += 1;
-
-            function animateNumber(target, element) {
-                let current = parseInt(element.textContent) || 0;
-                const duration = 1000;
-                const start = performance.now();
-                let animationFrame;
-                
-                function update(timestamp) {
-                    const progress = Math.min((timestamp - start) / duration, 1);
-                    const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                    const value = Math.floor(current + (target - current) * easeProgress);
-                    element.textContent = value.toLocaleString();
-                    if (progress < 1) animationFrame = requestAnimationFrame(update);
-                }
-                animationFrame = requestAnimationFrame(update);
-                return () => cancelAnimationFrame(animationFrame);
+            function update(timestamp) {
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const value = Math.floor(current + (target - current) * easeProgress);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) animationFrame = requestAnimationFrame(update);
             }
-
-            animateNumber(total, document.getElementById('totalVisitors'));
-            document.getElementById('runTime').textContent = runDays;
-
-            localStorage.setItem('totalVisitors', total);
-            const lastUpdateTime = new Date().toLocaleString();
-            localStorage.setItem('lastUpdateTime', lastUpdateTime);
-            document.getElementById('updateTime').textContent = `更新于：${lastUpdateTime}`;
+            animationFrame = requestAnimationFrame(update);
+            return () => cancelAnimationFrame(animationFrame);
         }
 
-        window.addEventListener('load', initCounter);
+        animateNumber(total, document.getElementById('totalVisitors'));
+        document.getElementById('runTime').textContent = runDays;
 
-        // 轮播控制脚本
-        const slider = document.getElementById('testimonialSlider');
-        const wrapper = document.getElementById('testimonialWrapper');
-        const indicators = document.querySelectorAll('.testimonial-indicator');
-        let currentIndex = 0;
-        const totalItems = 5;
-        let autoPlayInterval;
+        localStorage.setItem('totalVisitors', total);
+        const lastUpdateTime = new Date().toLocaleString();
+        localStorage.setItem('lastUpdateTime', lastUpdateTime);
+        document.getElementById('updateTime').textContent = `更新于：${lastUpdateTime}`;
+    }
 
-        function goToIndex(index) {
-            currentIndex = index;
-            const width = window.innerWidth < 768 ? 100 : 33.333;
-            wrapper.style.transform = `translateX(-${currentIndex * width}%)`;
-            indicators.forEach((indicator, i) => {
-                indicator.classList.toggle('bg-primary', i === currentIndex);
-                indicator.classList.toggle('bg-primary/30', i !== currentIndex);
-            });
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalItems;
-            goToIndex(currentIndex);
-        }
-
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', () => {
-                goToIndex(parseInt(indicator.dataset.index));
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = setInterval(nextSlide, 2000);
-            });
-        });
-
-        autoPlayInterval = setInterval(nextSlide, 2000);
-        goToIndex(0);
-        window.addEventListener('resize', () => goToIndex(currentIndex));
-    </script>
+    window.addEventListener('load', initCounter);
+</script>
 </body>
 </html>
