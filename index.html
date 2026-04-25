@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,7 +17,7 @@
 
         /* 表情包样式 */
         .meme-container {
-            width: 160px; /* 4×4格总大小，每格40px */
+            width: 160px;
             height: 160px;
             margin: 0 auto 30px;
             display: grid;
@@ -131,11 +132,9 @@
     </style>
 </head>
 <body>
-    <!-- 顶部表情包（4×4大小，单张图片） -->
+    <!-- 顶部表情包 -->
     <div class="meme-container fade-in">
-        <!-- 4×4网格容器，仅放一张表情包 -->
-        < img src="im.JPG" alt="搞笑表情包" class="meme-img">
-        <!-- 网格线由容器的gap和背景色模拟，无需额外单元格元素 -->
+        <img src="im.JPG" alt="搞笑表情包" class="meme-img">
     </div>
 
     <!-- 主标题 -->
@@ -146,7 +145,7 @@
     <!-- 欢迎语横幅 -->
     <div class="welcome-banner fade-in delay-1">
         <h2 class="text-[clamp(1.2rem,5vw,1.8rem)] font-bold">文明城市，美丽蚌埠欢迎您！</h2>
-        <p class="mt-2 text-blue-100">皖C三件套，等你来打卡！</p >
+        <p class="mt-2 text-blue-100">皖C三件套，等你来打卡！</p>
     </div>
 
     <!-- 服务内容卡片 -->
@@ -165,7 +164,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-gray-800">日常接送</h3>
-                    <p class="text-gray-600 text-sm mt-1">市内短途、跨区出行，随叫随到，准时可靠</p >
+                    <p class="text-gray-600 text-sm mt-1">市内短途、跨区出行，随叫随到，准时可靠</p>
                 </div>
             </div>
 
@@ -175,7 +174,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-gray-800">长途包车</h3>
-                    <p class="text-gray-600 text-sm mt-1">周边游、商务差旅，全程专属服务，舒适安心</p >
+                    <p class="text-gray-600 text-sm mt-1">周边游、商务差旅，全程专属服务，舒适安心</p>
                 </div>
             </div>
 
@@ -185,21 +184,21 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-gray-800">接送机服务</h3>
-                    <p class="text-gray-600 text-sm mt-1">准时接送，行李协助，让行程更轻松</p >
+                    <p class="text-gray-600 text-sm mt-1">准时接送，行李协助，让行程更轻松</p>
                 </div>
             </div>
         </div>
 
         <!-- 二维码区域 -->
         <div class="qr-section">
-            <p class="text-gray-700 font-medium mb-4">扫码添加好友，预约用车</p >
-            < img src="wx.JPG" alt="刘师傅微信二维码" class="qr-image">
-            <p class="qr-tip">长按图片可保存二维码</p >
+            <p class="text-gray-700 font-medium mb-4">扫码添加好友，预约用车</p>
+            <img src="wx.JPG" alt="刘师傅微信二维码" class="qr-image">
+            <p class="qr-tip">长按图片可保存二维码</p>
         </div>
     </div>
 
     <script>
-        // 表情包点击效果
+        // 表情包点击缩放效果
         const memeImg = document.querySelector('.meme-img');
         memeImg.addEventListener('click', () => {
             memeImg.style.transform = 'scale(1.2)';
