@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,26 +11,61 @@
             background: linear-gradient(135deg, #e6f2ff 0%, #d1e7fe 100%);
             min-height: 100vh;
             font-family: 'Arial Rounded MT Bold', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* 首屏白色区域 */
+        .hero-section {
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 装饰元素 */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(30, 136, 229, 0.05);
+            top: 15%;
+            left: 10%;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(30, 136, 229, 0.05);
+            bottom: 20%;
+            right: 10%;
         }
 
         /* 表情包样式 */
         .meme-container {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 30px;
+            width: 220px;
+            height: 220px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
             gap: 1px;
             background: #e6f2ff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(30, 136, 229, 0.15);
             overflow: hidden;
-        }
-
-        .meme-cell {
-            background: white;
+            margin-bottom: 40px;
+            z-index: 10;
         }
 
         .meme-img {
@@ -50,9 +84,10 @@
         /* 主标题样式 */
         .main-title {
             text-align: center;
-            margin-bottom: 40px;
             color: #1e88e5;
             animation: bounce 3s ease-in-out infinite;
+            margin: 0 0 20px 0;
+            z-index: 10;
         }
 
         @keyframes bounce {
@@ -60,14 +95,57 @@
             50% { transform: scale(1.05); }
         }
 
+        /* 点击按钮 */
+        .interactive-btn {
+            background: linear-gradient(90deg, #1e88e5, #3b96f7);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(30, 136, 229, 0.4);
+        }
+
+        .interactive-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 下滑提示 */
+        .scroll-tip {
+            position: absolute;
+            bottom: 30px;
+            color: #1e88e5;
+            font-size: 14px;
+            animation: bounce-up 1.5s infinite;
+            z-index: 10;
+        }
+
+        @keyframes bounce-up {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         /* 欢迎语横幅 */
         .welcome-banner {
             background: linear-gradient(90deg, #1e88e5, #3b96f7);
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 18px;
             border-radius: 12px;
-            margin-bottom: 30px;
+            margin: 0 20px 30px;
             box-shadow: 0 6px 16px rgba(30, 136, 229, 0.15);
         }
 
@@ -77,7 +155,7 @@
             border-radius: 16px;
             padding: 25px;
             max-width: 400px;
-            margin: 0 auto;
+            margin: 0 auto 60px;
             box-shadow: 0 10px 25px rgba(30, 136, 229, 0.1);
         }
 
@@ -129,79 +207,195 @@
         @keyframes fadeIn {
             to { opacity: 1; }
         }
+
+        /* 弹窗样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            color: #1e88e5;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .modal-desc {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #3b96f7;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
-    <!-- 顶部表情包 -->
-    <div class="meme-container fade-in">
-        <img src="im.JPG" alt="搞笑表情包" class="meme-img">
-    </div>
-
-    <!-- 主标题 -->
-    <h1 class="main-title text-[clamp(1.8rem,8vw,3rem)] font-bold fade-in delay-1">
-        你还真扫？这是劳资的车！<br>别被我逮到了哟～
-    </h1>
-
-    <!-- 欢迎语横幅 -->
-    <div class="welcome-banner fade-in delay-1">
-        <h2 class="text-[clamp(1.2rem,5vw,1.8rem)] font-bold">文明城市，美丽蚌埠欢迎您！</h2>
-        <p class="mt-2 text-blue-100">皖C三件套，等你来打卡！</p>
-    </div>
-
-    <!-- 服务内容卡片 -->
-    <div class="service-card fade-in delay-2">
-        <div class="flex items-center gap-3 mb-10">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <i class="fa fa-car text-[#1e88e5] text-xl"></i>
-            </div>
-            <h2 class="text-xl font-bold text-gray-800">用车服务</h2>
+    <!-- 首屏白色区域 -->
+    <div class="hero-section fade-in">
+        <!-- 表情包 -->
+        <div class="meme-container">
+            <img src="im.JPG" alt="搞笑表情包" class="meme-img">
         </div>
 
-        <div class="space-y-6">
-            <div class="service-item">
-                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i class="fa fa-clock-o text-[#1e88e5]"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-800">日常接送</h3>
-                    <p class="text-gray-600 text-sm mt-1">市内短途、跨区出行，随叫随到，准时可靠</p>
-                </div>
-            </div>
+        <!-- 主标题 -->
+        <h1 class="main-title text-[clamp(1.8rem,8vw,3.5rem)] font-bold">
+            你还真扫？这是劳资的车！<br>别被我逮到了哟～
+        </h1>
 
-            <div class="service-item">
-                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i class="fa fa-map text-[#1e88e5]"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-800">长途包车</h3>
-                    <p class="text-gray-600 text-sm mt-1">周边游、商务差旅，全程专属服务，舒适安心</p>
-                </div>
-            </div>
+        <!-- 点击按钮 -->
+        <button class="interactive-btn" id="popupButton">
+            <i class="fa fa-hand-pointer-o"></i> 解锁车辆
+        </button>
 
-            <div class="service-item">
-                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i class="fa fa-plane text-[#1e88e5]"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-gray-800">接送机服务</h3>
-                    <p class="text-gray-600 text-sm mt-1">准时接送，行李协助，让行程更轻松</p>
-                </div>
-            </div>
+        <!-- 下滑提示 -->
+        <div class="scroll-tip">
+            <i class="fa fa-chevron-down"></i> 往下滑，广告位招租
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <h3 class="modal-title">你还真敢信？</h3>
+            <p class="modal-desc">真想开我的车？扫码联系刘师傅，包车租车有优惠！</p>
+            <button class="close-btn" id="closeButton">知道了</button>
+        </div>
+    </div>
+
+    <!-- 下方广告内容 -->
+    <div class="content-section">
+        <!-- 欢迎语横幅 -->
+        <div class="welcome-banner fade-in delay-1">
+            <h2 class="text-[clamp(1.2rem,5vw,1.8rem)] font-bold">文明城市美丽蚌埠，快来打卡皖C三件套！</h2>
+            <p class="mt-2 text-blue-100">让每一次出行都充满温暖</p>
         </div>
 
-        <!-- 二维码区域 -->
-        <div class="qr-section">
-            <p class="text-gray-700 font-medium mb-4">扫码添加好友，预约用车</p>
-            <img src="wx.JPG" alt="刘师傅微信二维码" class="qr-image">
-            <p class="qr-tip">长按图片可保存二维码</p>
+        <!-- 服务内容卡片 -->
+        <div class="service-card fade-in delay-2">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i class="fa fa-car text-[#1e88e5] text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">刘师傅用车服务</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="service-item">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-clock-o text-[#1e88e5]"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">日常接送</h3>
+                        <p class="text-gray-600 text-sm mt-1">市内短途、跨区出行，随叫随到，准时可靠</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-map text-[#1e88e5]"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">长途包车</h3>
+                        <p class="text-gray-600 text-sm mt-1">周边游、商务差旅，全程专属服务，舒适安心</p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <i class="fa fa-plane text-[#1e88e5]"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">接送机服务</h3>
+                        <p class="text-gray-600 text-sm mt-1">准时接送，行李协助，让行程更轻松</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 二维码区域 -->
+            <div class="qr-section">
+                <p class="text-gray-700 font-medium mb-4">扫码添加好友，预约用车</p>
+                <img src="wx.JPG" alt="刘师傅微信二维码" class="qr-image">
+                <p class="qr-tip">长按图片可保存二维码</p>
+            </div>
         </div>
     </div>
 
     <script>
-        // 表情包点击缩放效果
+        // 弹窗功能逻辑
+        const popupButton = document.getElementById('popupButton');
+        const modal = document.getElementById('myModal');
+        const closeButton = document.getElementById('closeButton');
+
+        // 点击按钮显示弹窗
+        popupButton.addEventListener('click', () => {
+            modal.classList.add('show');
+            // 防止背景滚动
+            document.body.style.overflow = 'hidden';
+        });
+
+        // 点击关闭按钮隐藏弹窗
+        closeButton.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+
+        // 点击弹窗外部关闭弹窗
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // 表情包点击效果
         const memeImg = document.querySelector('.meme-img');
         memeImg.addEventListener('click', () => {
-            memeImg.style.transform = 'scale(1.2)';
+            memeImg.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 memeImg.style.transform = 'scale(1)';
             }, 300);
