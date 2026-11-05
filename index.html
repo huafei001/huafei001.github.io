@@ -202,6 +202,7 @@
       margin-top: 40px;
       color: #779bb8;
       font-size: 14px;
+      line-height: 1.6;
     }
 
     /* 吐司提示 */
@@ -254,7 +255,7 @@
 
     <div class="tab-content show" id="passenger">
       <div class="rank-item">
-        <img class="thumb" src="/429.JPG" alt="示例配图">
+        <img class="thumb" src="/426.JPG" alt="示例配图">
         <div class="text-wrap">
           <div class="item-title">
             <span class="rank-num num-1">1</span>
@@ -264,13 +265,13 @@
         </div>
       </div>
       <div class="rank-item">
-        <img class="thumb" src="https://huafei001.github.io/wz.JPG" alt="示例配图">
+        <img class="thumb" src="/wz.JPG" alt="示例配图">
         <div class="text-wrap">
           <div class="item-title">
             <span class="rank-num num-2">2</span>
-            逃单
+            几块到十几快不等，逃单
           </div>
-          <div class="desc">五中附近上车，下车就跑。</div>
+          <div class="desc">五中附近上车，下车就跑。已经有多名司机反馈！到尽了！</div>
         </div>
       </div>
       <div class="rank-item">
@@ -278,9 +279,9 @@
         <div class="text-wrap">
           <div class="item-title">
             <span class="rank-num num-3">3</span>
-            虚假恶意投诉，诬陷司机
+            待反馈
           </div>
-          <div class="desc">案例警示：无事实依据提交恶意投诉，诬告司机，核查属实后会记入乘客信用记录。</div>
+          <div class="desc">案例警示：待反馈</div>
         </div>
       </div>
       <div class="rank-item">
@@ -378,7 +379,10 @@
       </div>
     </div>
 
-    <div class="visit-stat" id="visitText"></div>
+    <div class="visit-stat">
+      本站总访问量 <span id="busuanzi_value_site_pv">--</span> 次<br>
+      本站访客数 <span id="busuanzi_value_site_uv">--</span> 人次
+    </div>
   </div>
 
   <button class="submit-btn-fixed" id="submitBtn">去投稿</button>
@@ -388,6 +392,9 @@
     <img id="lightbox-img" src="" alt="原图">
   </div>
 
+  <!-- 不蒜子统计脚本 -->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3.4/busuanzi.pure.mini.js"></script>
+
   <script>
     // 吐司函数
     function showToast(msg) {
@@ -396,18 +403,6 @@
       t.classList.add("show");
       setTimeout(() => t.classList.remove("show"), 2200);
     }
-
-    // 访问统计，初始基数：1101
-    const BASE_COUNT = 1101;
-    let count = localStorage.getItem("visitCount");
-    if (!count) {
-      count = BASE_COUNT;
-    } else {
-      count = Number(count);
-    }
-    count += 1;
-    localStorage.setItem("visitCount", count);
-    document.getElementById("visitText").innerText = "已访问 " + count + " 次";
 
     const tabs = document.querySelectorAll('.tab-item');
     const contents = document.querySelectorAll('.tab-content');
