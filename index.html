@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>违规案例参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #ffffff;
+      padding: 40px 16px;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .header-card {
+      background: #f0f7ff;
+      border: 1px solid #dcebfa;
+      border-radius: 20px;
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .tab-wrap {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .tab-item {
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+      background: #e4f2fd;
+      color: #3a74a2;
+      white-space: nowrap;
+    }
+
+    .tab-item.active {
+      background: linear-gradient(135deg, #63b8f3, #429ee7);
+      color: white;
+    }
+
+    .tab-item:hover:not(.active) {
+      background: #d9eaf8;
+    }
+
+    h1 {
+      color: #1a3b5d;
+      font-size: 26px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #5b8cb8;
+      font-size: 14px;
+    }
+
+    .rank-item {
+      background: #f7fbff;
+      border: 1px solid #e3f0fc;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: 0.3s ease;
+    }
+
+    .rank-item:hover {
+      transform: translateY(-3px);
+      border-color: #b8ddfb;
+      box-shadow: 0 10px 30px rgba(120, 185, 235, 0.18);
+    }
+
+    .thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #d9eaf8;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .thumb:hover {
+      opacity: 0.85;
+    }
+
+    .text-wrap {
+      flex-grow: 1;
+    }
+
+    .rank-num {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      place-items: center;
+      font-weight: 700;
+      font-size: 18px;
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    .num-1 {
+      background: linear-gradient(135deg, #4fa8e8, #76c4f2);
+    }
+    .num-2 {
+      background: linear-gradient(135deg, #72bff0, #9cd6f6);
+    }
+    .num-3 {
+      background: linear-gradient(135deg, #91cff4, #b7e2fa);
+    }
+    .num-other {
+      background: #e4f2fd;
+      color: #3a74a2;
+    }
+
+    .item-title {
+      color: #1f486e;
+      font-size: 17px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .desc {
+      color: #587b9c;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.show {
+      display: block;
+    }
+
+    .img-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 60, 96, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+      cursor: pointer;
+    }
+    .img-lightbox.show {
+      display: flex;
+    }
+    .img-lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+
+    .submit-btn-fixed {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #63b8f3, #429ee7);
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(80, 170, 235, 0.35);
+      transition: 0.25s;
+      z-index: 100;
+    }
+    .submit-btn-fixed:hover {
+      filter: brightness(1.12);
+      transform: translateY(-2px);
+    }
+
+    .visit-stat {
+      text-align: center;
+      margin-top: 40px;
+      color: #779bb8;
+      font-size: 14px;
+    }
+
+    /* 吐司提示 */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 100px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,0,0,0.72);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      z-index: 9999;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 620px) {
+      .rank-item {
+        flex-wrap: wrap;
+      }
+      .tab-wrap {
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .submit-btn-fixed {
+        right: 16px;
+        bottom: 16px;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-card">
+      <h1>违规案例参考</h1>
+      <div class="subtitle">行业警示案例 · 仅作学习参考</div>
+      <div class="tab-wrap">
+        <button class="tab-item active" data-tab="passenger">乘客违规黑名单</button>
+        <button class="tab-item" data-tab="driver">出租车违规黑名单</button>
+      </div>
+    </div>
+
+    <div class="tab-content show" id="passenger">
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1025/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-1">1</span>
+            乘车逃单，拒不支付车费
+          </div>
+          <div class="desc">案例警示：到达目的地后借口逃费，多次恶意不支付乘车费用，平台会限制其打车权限。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1027/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-2">2</span>
+            醉酒乘车辱骂、殴打司机
+          </div>
+          <div class="desc">案例警示：醉酒后情绪失控，辱骂甚至动手攻击驾驶员，属于违法行为，司机可报警维权。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1035/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-3">3</span>
+            虚假恶意投诉，诬陷司机
+          </div>
+          <div class="desc">案例警示：无事实依据提交恶意投诉，诬告司机，核查属实后会记入乘客信用记录。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1040/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">4</span>
+            携带危险品乘车、损坏车辆
+          </div>
+          <div class="desc">案例警示：携带易燃易爆危险品上车，故意弄脏、损毁车内设施，需要承担赔偿责任。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1042/120/120" alt="待补充配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">5</span>
+            【待录入案例标题】
+          </div>
+          <div class="desc">此处填写案例描述，直接替换这段文字即可。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1043/120/120" alt="待补充配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">6</span>
+            【待录入案例标题】
+          </div>
+          <div class="desc">此处填写案例描述，直接替换这段文字即可。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="driver">
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1005/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-1">1</span>
+            恶意绕路、拒退多收车费
+          </div>
+          <div class="desc">案例警示：营运途中故意绕路，乘客发现后拒绝退还多出费用，属于平台和运管重点查处行为。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1006/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-2">2</span>
+            高铁站短途拒载、中途甩客
+          </div>
+          <div class="desc">案例警示：在客流站点挑单拒载，行程中途甩客，违反出租汽车运营管理规定，可向运管投诉。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1009/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-3">3</span>
+            改动计价器、诱导加价
+          </div>
+          <div class="desc">案例警示：私自改动计价设备、强行加价，属于较重违规，一经查实会面临罚款、停运。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1011/120/120" alt="示例配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">4</span>
+            车内吸烟、与乘客争执骚扰
+          </div>
+          <div class="desc">案例警示：车内吸烟、言语冒犯乘客，容易引发投诉，破坏行业口碑。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1015/120/120" alt="待补充配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">5</span>
+            【待录入案例标题】
+          </div>
+          <div class="desc">此处填写案例描述，直接替换这段文字即可。</div>
+        </div>
+      </div>
+      <div class="rank-item">
+        <img class="thumb" src="https://picsum.photos/id/1018/120/120" alt="待补充配图">
+        <div class="text-wrap">
+          <div class="item-title">
+            <span class="rank-num num-other">6</span>
+            【待录入案例标题】
+          </div>
+          <div class="desc">此处填写案例描述，直接替换这段文字即可。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visit-stat" id="visitText"></div>
+  </div>
+
+  <button class="submit-btn-fixed" id="submitBtn">去投稿</button>
+  <div class="toast" id="toast"></div>
+
+  <div class="img-lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="原图">
+  </div>
+
+  <script>
+    // 吐司函数
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.innerText = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2200);
+    }
+
+    // 访问统计，初始基数：1101
+    const BASE_COUNT = 1101;
+    let count = localStorage.getItem("visitCount");
+    if (!count) {
+      count = BASE_COUNT;
+    } else {
+      count = Number(count);
+    }
+    count += 1;
+    localStorage.setItem("visitCount", count);
+    document.getElementById("visitText").innerText = "已访问 " + count + " 次";
+
+    const tabs = document.querySelectorAll('.tab-item');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.onclick = function () {
+        const target = this.dataset.tab;
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        contents.forEach(c => c.classList.remove('show'));
+        document.getElementById(target).classList.add('show');
+      }
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightImg = document.getElementById('lightbox-img');
+    const thumbs = document.querySelectorAll('.thumb');
+    thumbs.forEach(img => {
+      img.onclick = function (e) {
+        e.stopPropagation();
+        lightImg.src = this.src;
+        lightbox.classList.add('show');
+      }
+    });
+    lightbox.onclick = function () {
+      lightbox.classList.remove('show');
+    }
+
+    const wechatId = "weixinhao123";
+    document.getElementById('submitBtn').onclick = async function () {
+      try {
+        await navigator.clipboard.writeText(wechatId);
+        showToast("已复制微信号，添加好友投稿");
+      } catch (err) {
+        showToast("复制失败，请手动复制微信号：" + wechatId);
+      }
+    }
+  </script>
+</body>
+</html>
